@@ -3,6 +3,9 @@
     <div class="col-md-10">
 
     <h2>ジャンル一覧・追加</h2>
+
+    <%= render 'layouts/errors', obj: @genre %>
+
     <%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
       ジャンル名<%= f.text_field :name, class: 'mx-5' %><%= f.submit '新規登録', class: 'btn btn-success' %>
     <% end %>
