@@ -1,0 +1,40 @@
+.container
+  %section.mv.d-flex.justify-content-center.align-items-center.mt-5.mx-auto
+    %p.font-weight-bold
+      ようこそ、ながのCAKEへ！
+      %br
+      このサイトは、ケーキ販売のECサイトになります。
+      %br
+      会員でない方も商品の閲覧はできますが、
+      %br
+      購入には会員登録が必要になります。
+  %section.new_products
+    %h1.my-4 新着商品
+    .d-flex.justify-content-between
+      .product
+        = image_tag "no_image.png", size: "230x150"
+        %p.mt-3 商品名
+        %p ￥0000
+      .product
+        = image_tag "no_image.png", size: "230x150"
+        %p.mt-3 商品名
+        %p ￥0000
+      .product
+        = image_tag "no_image.png", size: "230x150"
+        %p.mt-3 商品名
+        %p ￥0000
+      .product
+        = image_tag "no_image.png", size: "230x150"
+        %p.mt-3 商品名
+        %p ￥0000
+        
+    // .d-flex.justify-content-between
+    //   - @products.each do |product|
+    //     .info
+    //       = attachment_image_tag product, :image, size: "230x150", fallback: "no_image_png"
+    //       %p.mt-3 = product.name
+    //       %p ￥
+    //       = product.price * 1.1
+    .d-flex.justify-content-end
+      = link_to "すべての商品を見る>", products_path, class: "text-right"
+    
