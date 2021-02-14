@@ -99,7 +99,10 @@ GEM
       railties (>= 3.2)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
+    erb2haml (0.1.5)
+      html2haml
     erubi (1.10.0)
+    erubis (2.7.0)
     execjs (2.7.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
@@ -113,6 +116,20 @@ GEM
       sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    haml (5.2.1)
+      temple (>= 0.8.0)
+      tilt
+    haml-rails (2.0.1)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6, < 6.0)
+      html2haml (>= 1.0.1)
+      railties (>= 5.1)
+    html2haml (2.2.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -259,6 +276,8 @@ GEM
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
     ruby_dep (1.5.0)
+    ruby_parser (3.15.1)
+      sexp_processor (~> 4.9)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -278,6 +297,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sexp_processor (4.15.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -295,6 +315,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    temple (0.8.2)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -334,9 +355,11 @@ DEPENDENCIES
   devise
   dotenv-rails
   enum_help
+  erb2haml
   factory_bot_rails
   faker
   font-awesome-sass (~> 5.13)
+  haml-rails
   jbuilder (~> 2.5)
   jp_prefecture
   jquery-rails
