@@ -1,0 +1,37 @@
+.container
+  %h2.mb-2 #{@customer.last_name}#{@customer.first_name}さんの会員詳細
+  = render 'layouts/errors', obj: @customer
+  .row
+    .col-md-2
+      %p 会員id
+      %p 氏名
+      %p フリガナ
+      %p 郵便番号
+      %p 住所
+      %p 電話番号
+      %p メールアドレス
+      %p 会員ステータス
+    .col-md-10
+      %p #{@customer.id}
+      = form_with model: @customer, url: admin_customer_path, local: true do |f|
+        .field
+          = f.text_field :last_name, class: "mr-3"
+          = f.text_field :first_name
+        .field
+          = f.text_field :last_name_kana, class: "mr-3"
+          = f.text_field :first_name_kana
+        .field
+          = f.text_field :postcode
+        .field
+          = f.text_field :address
+        .field
+          = f.text_field :phone_number
+        .field
+          = f.email_field :email
+        .field
+          = f.radio_button :is_deleted, "false"
+          有効
+          = f.radio_button :is_deleted, "true"
+          退会
+        .actions
+          = f.submit "変更を保存", class: "btn btn-success"
