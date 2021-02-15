@@ -7,3 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(email: ENV['ADMIN_EMAIL'],
              password: ENV['ADMIN_PASSWORD'])
+
+Genre.create!(name: 'ケーキ')
+Genre.create!(name: 'プリン')
+Genre.create!(name: '焼き菓子')
+
+15.times do |number|
+  Product.create!(genre_id: 1,
+                  name: "ケーキ#{number}",
+                  description: number,
+                  price: 4000,
+                  is_active: true)
+end
