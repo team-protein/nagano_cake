@@ -13,7 +13,7 @@
             </div>
             <p class="product-name"><%= product.name %></p>
           <% end %>
-          <p><%= product.price %></p>
+          <p><%= tax_included_price(product.price) %></p>
         </div>
       <% end %>
       </div>

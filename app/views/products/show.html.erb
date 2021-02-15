@@ -14,7 +14,7 @@
             <%= @product.description %>
           </p>
           <p>
-            <%= @tax_included_price.floor %>（税込）
+            <%= tax_included_price(@product.price) %>（税込）
           </p>
           <div class="form-group">
             個数選択

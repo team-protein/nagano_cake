@@ -1,10 +1,9 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.page(params[:page])
+    @products = Product.where(is_active: true).page(params[:page]).per(8)
   end
 
   def show
     @product = Product.find(params[:id])
-    @tax_included_price = @product.price * 1.1
   end
 end
