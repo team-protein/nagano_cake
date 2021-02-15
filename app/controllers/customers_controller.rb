@@ -3,7 +3,6 @@ class CustomersController < ApplicationController
     end
     
     def delete_confirm
-        
     end
     
     def withdraw
