@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.where(is_active: true).order("created_at DESC").page(params[:page]).per(8)
-    @products_all = Product.all
+    @active_products_all = Product.where(is_active: true)
   end
 
   def show
