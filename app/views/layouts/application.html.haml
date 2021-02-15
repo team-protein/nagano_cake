@@ -12,14 +12,16 @@
       %nav.navbar.navbar-expand-lg.navbar-dark.bg-light
         %a.navbar-brand.text-body{href: "/"} 
           %span ながのCAKE
-        - if customer_signed_in? || admin_signed_in?
-          - if request.fullpath.include?("admin")
-            = render "layouts/admin_signed_in_nav"
-          -else
-            = render "layouts/signed_in_nav"
-        - else
+        - if admin_signed_in? && request.fullpath.include?("admin")
+          = render "layouts/admin_signed_in_nav"
+        - if admin_signed_in? == false && request.fullpath.include?("admin")
           = render "layouts/before_signed_in_nav"
-    %main
+        - if customer_signed_in? && request.fullpath.exclude?("admin")
+          = render "layouts/signed_in_nav"
+        - if customer_signed_in? == false && request.fullpath.exclude?("admin")
+          = render "layouts/before_signed_in_nav"
+        
+    %main   
       %p#notice
         = notice
       = yield
