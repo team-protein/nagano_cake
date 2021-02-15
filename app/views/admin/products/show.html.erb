@@ -10,9 +10,9 @@
       <p>税込価格（税抜価格）　<%= @tax_included_price.floor %>(<%= @product.price %>)円</p>
       <p>販売ステータス
         <% if @product.is_active == true %>
-          　<span class="product_active">販売中</span>
+          　<span class="text-success">販売中</span>
         <% else %>
-          　<span class="product_stop">販売停止中</span>
+          　<span class="text-secondary">販売停止中</span>
         <% end %>
       </p>
       <%= link_to '編集する', edit_admin_product_path(@product), class: 'btn btn-success' %>
