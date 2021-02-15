@@ -5,24 +5,22 @@
         <%= form_with model: @address, url: address_path, local: true do |f| %>
           <%= render "layouts/errors", obj: @address %>
           
-          <div class="field">
-            <%= f.label :postcode, "郵便番号（ハイフンなし）" %><br/>
-            <%= f.text_field :postcode %>
+          <div class="form">
+            <div class="label"><%= f.label :postcode, "郵便番号（ハイフンなし）" %></div>
+            <div class="form-box"><%= f.text_field :postcode, id: "postcode-form"%></div>
           </div>
           
-          <div class="field">
-            <%= f.label :address, "住所" %> <br/>
-            <%= f.text_field :address %>
+          <div class="form">
+            <div class="label"><%= f.label :address, "住所" %></div>
+            <div class="form-box"><%= f.text_field :address, id: "address-form" %></div>
           </div>
           
-          <div class="field">
-            <%= f.label :dear, "宛名" %><br/>
-            <%= f.text_field :dear %>
+          <div class="form">
+            <div class="label"><%= f.label :dear, "宛名" %></div>
+            <div class="form-box"><%= f.text_field :dear %></div>
+            <div class="actions"><%= f.submit "変更内容を保存", class: "btn btn-success" %></div>
           </div>
-        
-          <div class="actions">
-            <%= f.submit "変更内容を保存", class: "btn btn-success" %>
-          </div>
+      
         <% end %>
     </div>
   </div>
