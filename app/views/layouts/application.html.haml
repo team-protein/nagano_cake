@@ -9,26 +9,16 @@
     = javascript_include_tag "application", "data-turbolinks-track": "reload"
   %body
     %header.border-bottom
-      %nav.navbar.navbar-expand-lg.navbar-dark
-        %a.navbar-brand{href: "/"}
-          %span.logo.text-dark ながのCAKE
-        - if customer_signed_in?
-          %p.mb-0.ml-auto.mr-5 
-            ようこそ、
-            = current_customer.name
-            さん！
-          %ul.navbar-nav
-            %li= link_to "マイページ", customers_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
-            %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
-            %li= link_to "カート", cart_products_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
-            %li= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-dark mr-5"
+      %nav.navbar.navbar-expand-lg.navbar-dark.bg-light
+        %a.navbar-brand.text-body{href: "/"} 
+          %span ながのCAKE
+        - if customer_signed_in? || admin_signed_in?
+          - if request.fullpath.include?("admin")
+            = render "layouts/admin_signed_in_nav"
+          -else
+            = render "layouts/signed_in_nav"
         - else
-        
-          %ul.navbar-nav.ml-auto
-            %li= link_to "About", about_path,class: "nav-link text-dark btn btn-outline-dark mr-5"
-            %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
-            %li= link_to "新規登録", new_customer_registration_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
-            %li= link_to "ログイン", new_customer_session_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
+          = render "layouts/before_signed_in_nav"
     %main
       %p#notice
         = notice
