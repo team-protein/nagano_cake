@@ -3,7 +3,7 @@
     <div class="col-md-10">
 
       <h2>商品詳細</h2>
-      <%= attachment_image_tag @product, :image, :fill, 200, 150, fallback: 'no_image.png' %>
+      <%= attachment_image_tag @product, :image, :fill, 200, 150, fallback: 'no_image.png', size: '200x150' %>
       <p>商品名　<%= @product.name %></p>
       <p>商品説明　<%= @product.description %></p>
       <p>ジャンル　<%= @product.genre.name %></p>
