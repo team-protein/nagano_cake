@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :customers
+  devise_for :customers, controllers: {
+    registrations: 'customers/registrations'
+  }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "homes#top"
   get "about" => "homes#about"
 
-  resource :customers, only: [:show, :edit, :update]
+  resource :customers, only: [:edit, :update]
+  get "customers/my_page" => "customers#show"
   get "customers/delete_confirm" => "customers#delete_confirm"
   patch "customers/withdraw" => "customers#withdraw"
 
