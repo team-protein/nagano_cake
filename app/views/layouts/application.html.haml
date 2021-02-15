@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title ながのCAKE
+    = csrf_meta_tags
+    = csp_meta_tag
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1"}
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_include_tag "application", "data-turbolinks-track": "reload"
+  %body
+    %header.border-bottom
+      %nav.navbar.navbar-expand-lg.navbar-dark.bg-light
+        %a.navbar-brand.text-body{href: "/"} 
+          %span ながのCAKE
+        - if customer_signed_in? || admin_signed_in?
+          - if request.fullpath.include?("admin")
+            = render "layouts/admin_signed_in_nav"
+          -else
+            = render "layouts/signed_in_nav"
+        - else
+          = render "layouts/before_signed_in_nav"
+    %main
+      %p#notice
+        = notice
+      = yield
+
+    %footer.border-top
+

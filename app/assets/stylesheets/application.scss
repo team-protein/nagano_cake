@@ -16,3 +16,28 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+
+.nav-link {
+  width: 120px;
+}
+
+nav {
+  height: 120px;
+}
+
+footer {
+  height: 100px;
+}
+
+.navbar-brand {
+  font-size: 40px;
+}
+
+a.text-dark:hover, a.text-dark:focus{
+color: #FFFFFF !important;
+}
+
+#notice {
+  color: green;
+}
