@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+
+      <div class="product-group d-flex mx-auto">
+        <div class="product-img">
+          <%= attachment_image_tag @product, :image, :fill, 200, 150, fallback: 'no_image.png', size: '200x150' %>
+        </div>
+        <div class="product-detail ml-auto">
+          <h4>
+            <%= @product.name %>
+          </h4>
+          <p>
+            <%= @product.description %>
+          </p>
+          <p>
+            <%= @tax_included_price.floor %>（税込）
+          </p>
+          <div class="form-group">
+            個数選択
+            <%= link_to 'カートに入れる', cart_products_path, class: 'btn btn-success ml-5' %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
