@@ -5,3 +5,21 @@
 .product-group {
   width: 550px;
 }
+
+.products-container {
+  width: 830px;
+  flex-wrap: wrap;
+}
+
+.one-product {
+  margin-right: 10px;
+  margin-bottom: 20px;
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+}
+
+.product-name {
+  margin-top: 5px;
+  margin-bottom: 0;
+}
