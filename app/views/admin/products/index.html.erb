@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+
+      <h2>商品詳細</h2>
+      <%= attachment_image_tag @product, :image, :fill, 100, 70, fallback: 'no_image.png' %>
+      <p>商品名 <%= @product.name %></p>
+      <p>商品説明 <%= @product.description %></p>
+      <p>ジャンル <%= @product.genre.name %></p>
+      <p>税込価格（税抜価格）<%= @tax_included_price (@product.price) %>円</p>
+      <p>販売ステータス 
+        <% if @product.is_active == true %>
+          販売中
+        <% else %>
+          販売停止中
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
