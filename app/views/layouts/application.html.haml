@@ -10,7 +10,7 @@
   %body
     %header.border-bottom
       %nav.navbar.navbar-expand-lg.navbar-dark
-        %a.navbar-brand{:href => "/"}
+        %a.navbar-brand{href: "/"}
           %span.logo.text-dark ながのCAKE
         - if customer_signed_in?
           %p.mb-0.ml-auto.mr-5 
@@ -29,10 +29,9 @@
             %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
             %li= link_to "新規登録", new_customer_registration_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
             %li= link_to "ログイン", new_customer_session_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
-
-
-
     %main
+      %p#notice
+        = notice
       = yield
 
     %footer.border-top

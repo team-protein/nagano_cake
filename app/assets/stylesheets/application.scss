@@ -17,9 +17,6 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-ul {
-  list-style: none;
-}
 
 .nav-link {
   width: 82px;
@@ -39,4 +36,8 @@ footer {
 
 a.text-dark:hover, a.text-dark:focus{
 color: #FFFFFF !important;
+}
+
+#notice {
+  color: green;
 }
