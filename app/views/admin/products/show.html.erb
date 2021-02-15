@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+
+      <h2>商品詳細</h2>
+      <%= attachment_image_tag @product, :image, :fill, 200, 150, fallback: 'no_image.png', size: '200x150' %>
+      <p>商品名　<%= @product.name %></p>
+      <p>商品説明　<%= @product.description %></p>
+      <p>ジャンル　<%= @product.genre.name %></p>
+      <p>税込価格（税抜価格）　<%= @tax_included_price.floor %>(<%= @product.price %>)円</p>
+      <p>販売ステータス
+        <% if @product.is_active == true %>
+          　<span class="text-success">販売中</span>
+        <% else %>
+          　<span class="text-secondary">販売停止中</span>
+        <% end %>
+      </p>
+      <%= link_to '編集する', edit_admin_product_path(@product), class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>

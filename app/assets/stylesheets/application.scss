@@ -17,7 +17,6 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-
 .nav-link {
   width: 120px;
 }
@@ -41,3 +40,8 @@ color: #FFFFFF !important;
 #notice {
   color: green;
 }
+
+#error_explanation {
+  color: red;
+}
+
