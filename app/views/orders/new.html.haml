@@ -9,15 +9,15 @@
       銀行振込
     %h3 お届け先
     .field
-      = f.radio_button :shipping_method, 0, checked: true
+      = f.radio_button :shipping_to, 0, checked: true
       ご自身の住所
       %br #{current_customer.postcode} #{current_customer.address}
       %br #{current_customer.last_name} #{current_customer.first_name}
-      = f.radio_button :shipping_method, 1
+      = f.radio_button :shipping_to, 1
       登録済み住所から選択
       .field
         = f.select :address_id, @addresses
-      = f.radio_button :shipping_method, 2
+      = f.radio_button :shipping_to, 2
       新しいお届け先
       .field
         = f.label :postcode, "郵便番号（ハイフンなし）"

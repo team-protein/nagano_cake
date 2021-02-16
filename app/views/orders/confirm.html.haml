@@ -9,15 +9,19 @@
             %th 単価（税込）
             %th 数量
             %th 小計
-            %th
         %tbody
-          - @order.ordered_products.each do |ordered_product|
+          - current_customer.cart_products.each do |cart_product|
             %tr
               %td
-                = attachment_image_tag ordered_product.product, :image, :fill, 30, 20, fallback: 'no_image.png', size: '30x20'
+                = attachment_image_tag cart_product.product, :image, :fill, 30, 20, fallback: 'no_image.png', size: '30x20'
                 = cart_product.product.name
               %td
-                = tax_included_price(ordered_product.product.price)
+                = tax_included_price(cart_product.product.price)
+              %td
+                = cart_product.quantity
+              %td
+                = subtotal_price(cart_product.product.price, cart_product.quantity)
+              
     .col-md-4
       %table.table
         %tr
@@ -35,11 +39,9 @@
     %h3 お届け先
     #{@order.postcode}#{@order.address}
     %br #{@order.dear}
-    
     .mx-auto
-      = form_with model: @order, local: true do |f|
-      .actions
-        = f.submit "注文を確定する", class: "btn btn-success"
-        
+      = link_to "注文を確定する", orders_path, method: :post, class: "btn btn-success"
+      
+          
     
 
