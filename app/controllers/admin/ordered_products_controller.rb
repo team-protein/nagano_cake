@@ -4,11 +4,13 @@ class Admin::OrderedProductsController < ApplicationController
   def update
     @order = Order.find(params[:order_id])
     @ordered_product = OrderedProduct.find(params[:id])
-    request = params[:making_status]
-    if request == "製作完了"
-      # 未完成
-      
-    redirect_to admin_order_path(@order)
+    @ordered_product.update(making_status: params[:making_status])
+    if @ordered_product.making_status == "working" && @order.status == "入金確認"
+      @order.status = "製作中"
+    elsif @order.ordered_products.where(making_status: "completed").count == @order.ordered_products.count
+      @order.status = "発送準備中"
+    end
+      redirect_to admin_order_path(@order)
   end
   
 end
