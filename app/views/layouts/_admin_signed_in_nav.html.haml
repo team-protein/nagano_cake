@@ -4,3 +4,5 @@
   %li= link_to "注文履歴一覧", admin_orders_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
   %li= link_to "ジャンル一覧", admin_genres_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
   %li= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-dark mr-5"
+
+= render 'admin/search/search_form'
