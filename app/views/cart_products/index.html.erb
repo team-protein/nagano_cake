@@ -24,10 +24,14 @@
               <%= tax_included_price(cart_product.product.price) %>
             </td>
             <td>
-              <%= cart_product.quantity %>
+              <%= form_with model: cart_product, local: true do |f| %>
+                <%= f.number_field :quantity, min:1 %>
+              <%= f.submit '変更', class: 'btn btn-success' %>
+              <% end %>
+          </div>
             </td>
             <td>
-              <%= tax_excluded_price(cart_product.product.price*1.1*cart_product.quantity) %>
+              <%= subtotal_price(cart_product.product.price, cart_product.quantity) %>
             </td>
             <td>
               <%= link_to '削除する', cart_product_path(cart_product), method: :delete, class: 'btn btn-danger' %>
@@ -36,6 +40,19 @@
           <% end %>
         </tbody>
       </table>
+
+      <table class="table col-md-5 ml-auto">
+        <thead>
+          <tr>
+            <th>合計</th>
+            <td><%= tax_excluded_price(@total_price) %></td>
+          </tr>
+        </thead>
+      </table>
+
+      <div class="my-5">
+        <%= link_to '買い物を続ける', products_path, class: 'btn btn-primary' %>
+      </div>
 
     </div>
   </div>

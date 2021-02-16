@@ -11,4 +11,13 @@ module ApplicationHelper
     price = price.floor
     "#{price.to_s(:delimited, delimiter: ',')}円"
   end
+
+  # 税込の単価に数量を掛け、三桁区切りのカンマを入れる
+  def subtotal_price(price, quantity)
+    price = price*1.1
+    price = price.floor
+    price = price*quantity
+    "#{price.to_s(:delimited, delimiter: ',')}円"
+  end
+  
 end
