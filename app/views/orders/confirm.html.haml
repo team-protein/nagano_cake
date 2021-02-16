@@ -1,0 +1,45 @@
+.container
+  %h2 注文情報確認
+  .row
+    .col-md-8
+      %table.table
+        %thead
+          %tr
+            %th 商品名
+            %th 単価（税込）
+            %th 数量
+            %th 小計
+            %th
+        %tbody
+          - @order.ordered_products.each do |ordered_product|
+            %tr
+              %td
+                = attachment_image_tag ordered_product.product, :image, :fill, 30, 20, fallback: 'no_image.png', size: '30x20'
+                = cart_product.product.name
+              %td
+                = tax_included_price(ordered_product.product.price)
+    .col-md-4
+      %table.table
+        %tr
+          %th 送料
+          %td #{@order.shipping_cost}
+        %tr
+          %th 商品合計
+          %td #{@order.total_price - @order.shipping_cost}
+        %tr
+          %th 請求金額
+          %td #{@order.total_price}
+  .row
+    %h3 支払い方法
+    = @order.payment_method
+    %h3 お届け先
+    #{@order.postcode}#{@order.address}
+    %br #{@order.dear}
+    
+    .mx-auto
+      = form_with model: @order, local: true do |f|
+      .actions
+        = f.submit "注文を確定する", class: "btn btn-success"
+        
+    
+
