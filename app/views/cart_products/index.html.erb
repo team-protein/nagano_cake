@@ -18,7 +18,7 @@
           <% @cart_products.each do |cart_product| %>
           <tr>
             <td>
-              <%= attachment_image_tag cart_product.product, :image, :fill, 30, 20, fallback: 'no_image.png', size: '30x20' %>
+              <%= attachment_image_tag cart_product.product, :image, :fill, 50, 40, fallback: 'no_image.png', size: '50x40' %>
               <%= cart_product.product.name %>
             </td>
             <td>
@@ -52,7 +52,7 @@
       </table>
 
       <div class="mt-5">
-        <%= link_to '買い物を続ける', products_path, class: 'btn btn-primary' %>
+        <%= link_to '買い物を続ける', root_path, class: 'btn btn-primary' %>
       </div>
 
       <div class="order-btn d-flex justify-content-center mb-5">
