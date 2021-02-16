@@ -9,8 +9,8 @@
     = javascript_include_tag "application", "data-turbolinks-track": "reload"
   %body
     %header.border-bottom
-      %nav.navbar.navbar-expand-lg.navbar-dark.bg-light
-        %a.navbar-brand.text-body{href: "/"} 
+      %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        %a.navbar-brand{href: "/"}
           %span ながのCAKE
         - if admin_signed_in? && request.fullpath.include?("admin")
           = render "layouts/admin_signed_in_nav"
@@ -20,10 +20,12 @@
           = render "layouts/signed_in_nav"
         - if customer_signed_in? == false && request.fullpath.exclude?("admin")
           = render "layouts/before_signed_in_nav"
-        
-    %main   
+
+    %main
       %p#notice
         = notice
+      %P#alert
+        = alert
       = yield
 
     %footer.border-top

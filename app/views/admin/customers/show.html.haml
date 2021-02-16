@@ -1,0 +1,28 @@
+.container
+  %h2.mb-4 #{@customer.last_name}#{@customer.first_name}さんの会員詳細
+  .row
+    .col-md-2
+      %p 会員id
+      %p 氏名
+      %p フリガナ
+      %p 郵便番号
+      %p 住所
+      %p 電話番号
+      %p メールアドレス
+      %p 会員ステータス
+    .col-md-10
+      %p #{@customer.id}
+      %p #{@customer.last_name}#{@customer.first_name}
+      %p #{@customer.last_name_kana}#{@customer.first_name_kana}
+      %p #{@customer.postcode}
+      %p #{@customer.address}
+      %p #{@customer.phone_number}
+      %p #{@customer.email}
+      - if @customer.is_deleted == true
+        %span.text-secondary 退会
+      - else 
+        %span.text-success 有効
+      .mt-2
+        = link_to "編集する", edit_admin_customer_path, class: "btn btn-success mr-5"
+        = link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary"
+  

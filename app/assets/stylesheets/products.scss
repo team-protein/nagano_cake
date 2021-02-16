@@ -1,3 +1,25 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.product-group {
+  width: 550px;
+}
+
+.products-container {
+  width: 830px;
+  flex-wrap: wrap;
+}
+
+.one-product {
+  margin-right: 10px;
+  margin-bottom: 20px;
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+}
+
+.product-name {
+  margin-top: 5px;
+  margin-bottom: 0;
+}

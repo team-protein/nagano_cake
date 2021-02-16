@@ -33,15 +33,18 @@ footer {
   font-size: 40px;
 }
 
-a.text-dark:hover, a.text-dark:focus{
-color: #FFFFFF !important;
+a.text-dark:hover {
+  color: #f8f9fa !important;
 }
 
 #notice {
   color: green;
 }
 
-#error_explanation {
+#alert {
   color: red;
 }
 
+#error_explanation {
+  color: red;
+}
