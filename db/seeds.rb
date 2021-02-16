@@ -5,4 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'])
+Admin.create!(email: ENV['ADMIN_EMAIL'],
+             password: ENV['ADMIN_PASSWORD'])
+
+Genre.create!(name: 'ケーキ')
+Genre.create!(name: 'プリン')
+Genre.create!(name: '焼き菓子')
+Genre.create!(name: 'キャンディ')
+
+15.times do |number|
+  Product.create!(genre_id: 1,
+                  name: "ケーキ#{number}",
+                  description: number,
+                  price: 4000,
+                  is_active: true)
+end
+
+10.times do |number|
+  Product.create!(genre_id: 2,
+                  name: "プリン#{number}",
+                  description: number,
+                  price: 500,
+                  is_active: false)
+end

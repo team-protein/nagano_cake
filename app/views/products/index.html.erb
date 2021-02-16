@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+
+      <h2>商品一覧（全<%= @active_products_all.count %>件）</h2>
+
+      <div class="products-container d-flex mx-auto">
+      <% @products.each do |product| %>
+        <div class="one-product">
+          <%= link_to product_path(product) do %>
+            <div class="product-img">
+              <%= attachment_image_tag product, :image, :fill, 200, 150, fallback: 'no_image.png', size: '200x150' %>
+            </div>
+            <p class="product-name"><%= product.name %></p>
+          <% end %>
+          <p><%= tax_included_price(product.price) %></p>
+        </div>
+      <% end %>
+      </div>
+
+      <div class="paginate">
+        <%= paginate @products %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-md-10.mx-auto
+      %h2 会員一覧
+      %table.table
+        %thead
+          %tr
+            %th 会員id
+            %th 氏名
+            %th メールアドレス
+            %th ステータス
+        %tbody
+          - @customers.each do |customer|
+            %tr
+              %td 
+                = customer.id
+              %td
+                = link_to admin_customer_path(customer) do
+                  #{customer.last_name}#{customer.first_name}
+              %td
+                = customer.email
+              %td
+                - if customer.is_deleted == true
+                  %span.text-secondary 退会
+                - else 
+                  %span.text-success 有効
+  .mx-auto              
+  = paginate @customers
