@@ -1,3 +1,6 @@
+<% if records.empty? %>
+  <p class="text-secondary">該当する商品は存在しません</p>
+<% else %>
 <table class="table">
   <thead>
     <tr>
@@ -38,3 +41,4 @@
 <div class="d-flex justify-content-center">
   <%= paginate records %>
 </div>
+<% end %>
