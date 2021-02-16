@@ -8,11 +8,13 @@ class CartProductsController < ApplicationController
       @cart_product = current_customer.cart_products.find_by(product_id: params[:cart_product][:product_id])
       @cart_product.quantity += params[:cart_product][:quantity].to_i
       @cart_product.save
+      product_id = @cart_product.product_id
       flash[:notice] = "Product was successfully added to cart."
-      redirect_to cart_products_path
+      redirect_to product_path(product_id)
     else @cart_product.save
+      product_id = @cart_product.product_id
       flash[:notice] = "New product was successfully added to cart."
-      redirect_to cart_products_path
+      redirect_to product_path(product_id)
     end
   end
 
