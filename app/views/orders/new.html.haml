@@ -1,7 +1,7 @@
 .container
   %h1　注文情報入力
   %h3　支払い方法
-  = form_with model: @order, local: true do |f|
+  = form_with url: orders_path, local: true do |f|
     .field
       = f.radio_button :payment_method, 0, checked: true
       クレジットカード
@@ -16,7 +16,7 @@
       = f.radio_button :shipping_method, 1
       登録済み住所から選択
       .field
-        = f.select :shipping_address, @addresses
+        = f.select :address_id, @addresses
       = f.radio_button :shipping_method, 2
       新しいお届け先
       .field
