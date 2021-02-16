@@ -28,33 +28,13 @@ class OrdersController < ApplicationController
     end
     @order.shipping_cost = 800
     @order.total_price = current_customer.cart_products.sum{|cart_product|cart_product.product.price * 1.1 * cart_product.quantity} + @order.shipping_cost
-    session[:payment_method] = params[:payment_method]
-    session[:shipping_to] = params[:shipping_to]
-    session[:address_id] = params[:address_id]
-    session[:postcode] = params[:postcode]
-    session[:address] = params[:address]
-    session[:dear] = params[:dear]
+    session[:order] = @order
     render :new if @order.invalid?
   end
 
   def create
-    @order = current_customer.orders.new(payment_method: session[:payment_method])
-    if session[:shipping_to] == "0"
-      @order.postcode = current_customer.postcode
-      @order.address = current_customer.address
-      @order.dear = current_customer.last_name + current_customer.first_name
-    elsif session[:shipping_to] == "1"
-      address = Address.find(session[:address_id])
-      @order.postcode = address.postcode
-      @order.address = address.address
-      @order.dear = address.dear
-    else
-      @order.postcode = session[:postcode]
-      @order.address = session[:address]
-      @order.dear = session[:dear]
-    end
-    @order.shipping_cost = 800
-    @order.total_price = current_customer.cart_products.sum{|cart_product|cart_product.product.price * 1.1 * cart_product.quantity} + @order.shipping_cost
+    @order = current_customer.orders.new(session[:order])
+    session[:order].clear
     if @order.save
       current_customer.cart_products.each do |cart_product|
         ordered_product = @order.ordered_products.new
