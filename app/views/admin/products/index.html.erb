@@ -2,8 +2,10 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
 
-      <h2>商品一覧</h2>
-      <%= link_to '＋', new_admin_product_path, class: 'btn btn-light rounded-circle shadow p-10 m-2' %>
+      <div class="d-flex justify-content-between">
+        <h2>商品一覧</h2>
+        <%= link_to '＋', new_admin_product_path, class: 'btn btn-outline-dark rounded-circle shadow p-10 m-2' %>
+      </div>
 
       <table class="table">
         <thead>
@@ -25,7 +27,7 @@
               <%= link_to product.name, admin_product_path(product) %>
             </td>
             <td>
-              <%= product.price %>
+              <%= tax_excluded_price(product.price) %>
             </td>
             <td>
               <%= product.genre.name %>
@@ -41,6 +43,10 @@
           <% end %>
         </tbody>
       </table>
+
+      <div class="d-flex justify-content-center">
+        <%= paginate @products %>
+      </div>
 
     </div>
   </div>
