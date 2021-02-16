@@ -1,0 +1,32 @@
+.container
+  %h1　注文情報入力
+  %h3　支払い方法
+  = form_with model: @order, local: true do |f|
+    .field
+      = f.radio_button :payment_method, 0, checked: true
+      クレジットカード
+      = f.radio_button :payment_method, 1
+      銀行振込
+    %h3 お届け先
+    .field
+      = f.radio_button :shipping_method, 0, checked: true
+      ご自身の住所
+      %br #{current_customer.postcode} #{current_customer.address}
+      %br #{current_customer.last_name} #{current_customer.first_name}
+      = f.radio_button :shipping_method, 1
+      登録済み住所から選択
+      .field
+        = f.select :shipping_address, @addresses
+      = f.radio_button :shipping_method, 2
+      新しいお届け先
+      .field
+        = f.label :postcode, "郵便番号（ハイフンなし）"
+        = f.text_field :postcode
+      .field
+        = f.label :address, "住所"
+        = f.text_field :address
+      .field
+        = f.label :dear, "宛名"
+        = f.text_field :dear
+      .actions.mt-4
+        = f.submit "確認画面へ進む", class: "btn btn-success"
