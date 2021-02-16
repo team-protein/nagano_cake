@@ -2,10 +2,12 @@ class OrdersController < ApplicationController
 
   def new
     unless current_customer.cart_products.present?
-      flash[:alert] = "商品をカートに入れてください"
+      flash.now[:alert] = "商品をカートに入れてください"
+      @cart_products = current_customer.cart_products
+      @total_price = @cart_products.sum{|cart_product|cart_product.product.price * 1.1 * cart_product.quantity}
       render "cart_products/index"
     end
-    @addresses = current_customer.addresses.to_a.map { |address| [address.postcode +  address.address +  address.dear, address.id] }
+    @addresses = current_customer.addresses.to_a.map {|address| [address.postcode +  address.address +  address.dear, address.id]}
   end
 
   def confirm
@@ -24,6 +26,8 @@ class OrdersController < ApplicationController
       @order.address = params[:address]
       @order.dear = params[:dear]
     end
+    @order.shipping_cost = 800
+    @order.total_price = current_customer.cart_products.sum{|cart_product|cart_product.product.price * 1.1 * cart_product.quantity} + @order.shipping_cost
     session[:payment_method] = params[:payment_method]
     session[:shipping_to] = params[:shipping_to]
     session[:address_id] = params[:address_id]
@@ -56,11 +60,11 @@ class OrdersController < ApplicationController
         ordered_product = @order.ordered_products.new
         ordered_product.product_id = cart_product.product.id
         ordered_product.quantity = cart_product.quantity
-        ordered_product.tax_included_price = tax_included_price(ordered_product.product.price)
+        ordered_product.tax_included_price = cart_product.product.price * 1.1 * cart_product.quantity
         ordered_product.save
       end
       current_customer.cart_products.destroy_all
-      redirect_to complete_orders
+      redirect_to complete_orders_path
     else
       render :new
     end
@@ -74,6 +78,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
 end
