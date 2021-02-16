@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>注文詳細</h2>
+  <div class="row">
+      
+    <div class="col-md-2">
+      <p>購入者</p>
+      <p>注文日</p>
+      <p>配送先</p>
+      <br>
+      <p>支払方法</p>
+      <p>注文ステータス</p>
+    </div>
+    
+    <div class="col-md-10">
+      <p><%= "#{@order.customer.last_name} #{@order.customer.first_name}" %></p>
+      <p><%= "#{@order.created_at}"%></p>
+      <p><%= "〒#{@order.postcode} #{@order.address}" %></p>
+      <p><%= "#{@order.dear}" %></p>
+      <p><%= "#{@order.payment_method}" %></p>
+      <p><%= "#{@order.status}" %></p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.ordered_products.each do |o_product| %>
+          <tr>
+            <td><%= "#{o_product.product.name}" %></td>
+            <td><%= o_product.tax_included_price %></td>
+            <td><%= o_product.quantity %></td>
+            <td><%= total = o_product.tax_included_price * o_product.quantity %></td>
+            <%= form_with(url: admin_order_ordered_product_path(@order.id, o_product.id), method: :patch, local: true) do |f| %>
+            <td>
+               <%= f.select :making_status, options_for_select({"着手不可"=>0, "製作待ち"=>1, "製作中"=>2, "製作完了"=>3})%> 
+            </td>
+            <td> <%= f.submit "更新", class: "btn btn-success" %></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <div>
+        <p><%= "商品合計 #{@order.total_price - @order.shipping_cost}" %></p>
+        <p><%= "送料 #{@order.shipping_cost}" %></p>
+        <p><%= "請求合計額 #{@order.total_price}" %></p>
+      </div>
+    </div>
+  </div>
+</div>
