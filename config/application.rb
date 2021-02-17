@@ -16,5 +16,7 @@ module NaganoCake
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.time_zone = 'Tokyo'
+    config.i18n.default_locale = :ja # デフォルトのlocaleを日本語(:ja)にする
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s] 
   end
 end

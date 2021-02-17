@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   devise_for :admin, controllers: {
     sessions:      'admins/sessions',
   }
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update, :index] do
       resources :ordered_products, only: [:update]
     end
+    get '/search' => 'search#search'
   end
 
 end
