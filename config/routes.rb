@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'search/search'
+  get '/search' => 'search#search'
   devise_for :admin, controllers: {
     sessions:      'admins/sessions',
   }
