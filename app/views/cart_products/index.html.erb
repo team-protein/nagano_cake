@@ -2,8 +2,11 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
 
-      <h2>ショッピングカート</h2>
-      <%= link_to 'カートを空にする', destroy_all_cart_products_path, method: :delete, class: 'btn btn-danger' %>
+      <div class="d-flex justify-content-between">
+        <h2>ショッピングカート</h2>
+        <%= link_to 'カートを空にする', destroy_all_cart_products_path, method: :delete, class: 'btn btn-danger' %>
+      </div>
+
       <table class="table">
         <thead>
           <tr>
@@ -18,8 +21,10 @@
           <% @cart_products.each do |cart_product| %>
           <tr>
             <td>
-              <%= attachment_image_tag cart_product.product, :image, :fill, 50, 40, fallback: 'no_image.png', size: '50x40' %>
-              <%= cart_product.product.name %>
+              <%= link_to product_path(cart_product.product) do %>
+                <%= attachment_image_tag cart_product.product, :image, :fill, 50, 40, fallback: 'no_image.png', size: '50x40' %>
+                <%= cart_product.product.name %>
+              <% end %>
             </td>
             <td>
               <%= tax_included_price(cart_product.product.price) %>

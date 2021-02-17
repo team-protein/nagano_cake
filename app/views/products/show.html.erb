@@ -13,7 +13,7 @@
             <%= @product.description %>
           </p>
           <p>
-            <%= tax_included_price(@product.price) %>（税込）
+            <%= tax_included_price(@product.price) %>円（税込）
           </p>
           <div class="form-group">
             <%= form_with model: @cart_product, local: true do |f| %>

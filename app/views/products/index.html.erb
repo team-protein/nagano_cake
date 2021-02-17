@@ -13,12 +13,12 @@
             </div>
             <p class="product-name"><%= product.name %></p>
           <% end %>
-          <p><%= tax_included_price(product.price) %></p>
+          <p><%= tax_included_price(product.price) %>円</p>
         </div>
       <% end %>
       </div>
 
-      <div class="paginate">
+      <div class="d-flex justify-content-center">
         <%= paginate @products %>
       </div>
 
