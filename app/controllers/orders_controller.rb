@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
         ordered_product = @order.ordered_products.new
         ordered_product.product_id = cart_product.product.id
         ordered_product.quantity = cart_product.quantity
-        ordered_product.tax_included_price = cart_product.product.price * 1.1 * cart_product.quantity
+        ordered_product.tax_included_price = cart_product.product.price * 1.1 
         ordered_product.save
       end
       current_customer.addresses.create(postcode: session[:postcode], address: session[:address], dear: session[:dear])
