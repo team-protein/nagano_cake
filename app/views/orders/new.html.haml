@@ -12,14 +12,14 @@
     .field.col-md-11.mx-auto
       = f.radio_button :shipping_to, 0, checked: true
       ご自身の住所
-      %p.mb-0.ml-4 #{current_customer.postcode} #{current_customer.address}
+      %p.mb-0.ml-4 〒#{current_customer.postcode} #{current_customer.address}
       %p.ml-4 #{current_customer.last_name} #{current_customer.first_name}
       
       - if current_customer.addresses.present?
         = f.radio_button :shipping_to, 1
         登録済み住所から選択
         .field.ml-4
-          = f.select :address_id, @addresses
+          = f.select :address_id, @addresses, size: 100
       - else
         %p 登録済み住所から選択
         %p.ml-4 配送先が登録されていません
