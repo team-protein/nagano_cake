@@ -21,10 +21,58 @@ Genre.create!(name: 'キャンディ')
                   is_active: true)
 end
 
+8.times do |number|
+  Product.create!(genre_id: 1,
+                  name: "ケーキ#{number}",
+                  description: number,
+                  price: 2500,
+                  is_active: false)
+end
+
+5.times do |number|
+  Product.create!(genre_id: 2,
+                  name: "プリン#{number}",
+                  description: number,
+                  price: 400,
+                  is_active: true)
+end
+
 10.times do |number|
   Product.create!(genre_id: 2,
                   name: "プリン#{number}",
                   description: number,
                   price: 500,
+                  is_active: false)
+end
+
+13.times do |number|
+  Product.create!(genre_id: 3,
+                  name: "焼き菓子#{number}",
+                  description: number,
+                  price: 320,
+                  is_active: true)
+end
+
+7.times do |number|
+  Product.create!(genre_id: 3,
+                  name: "焼き菓子#{number}",
+                  description: number,
+                  price: 590,
+                  is_active: false)
+end
+
+3.times do |number|
+  Product.create!(genre_id: 4,
+                  name: "キャンディ#{number}",
+                  description: number,
+                  price: 350,
+                  is_active: true)
+end
+
+2.times do |number|
+  Product.create!(genre_id: 4,
+                  name: "キャンディ#{number}",
+                  description: number,
+                  price: 340,
                   is_active: false)
 end

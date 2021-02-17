@@ -6,8 +6,21 @@ class Product < ApplicationRecord
   has_many :cart_products, dependent: :destroy
   attachment :image
 
-  # 検索用メソッド
+  # 管理者側検索メソッド
 	def self.search_for(content)
-	  	Product.where('name LIKE?', "%#{content}%")
+	  Product.where('name LIKE?', "%#{content}%")
 	end
+
+  # 会員側検索メソッド
+  def self.name_search_for(content)
+	  Product.where(is_active: true).where("name LIKE?", "%#{content}%")
+  end
+
+  def self.genre_search_for(genre)
+	  Product.where(is_active: true).where("genre_id LIKE?", "#{genre}")
+  end
+
+  def self.name_and_genre_search_for(content, genre)
+	  Product.where(is_active: true).where("name LIKE? AND genre_id LIKE?", "%#{content}%", "#{genre}")
+  end
 end
