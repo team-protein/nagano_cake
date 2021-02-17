@@ -6,4 +6,28 @@ ja:
         waiting: "製作待ち"
         working: "製作中"
         completed: "製作完了"
-        
+  activerecord:
+    models:
+      customer: ユーザー
+      address: アドレス
+    attributes:
+      customer:
+        first_name: 名前（名）
+        last_name: 名前（姓）
+        first_name_kana: フリガナ（名）
+        last_name_kana: フリガナ（姓）
+        phone_number: 電話番号
+        postcode: 郵便番号
+        address: 住所
+        email: メールアドレス
+        password: パスワード
+      address:
+        zip: 郵便番号
+        pref: 都道府県
+        city: 市区町村
+        block: 丁目、番地
+        building: ビル、マンション名
+        dst_first_name: 宛先（名）
+        dst_last_name: 宛先（氏）
+        dst_first_name_kana: ふりがな 宛先（名）
+        dst_last_name_kana: ふりがな 宛先（氏）
