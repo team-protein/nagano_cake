@@ -30,20 +30,9 @@ class Customer < ApplicationRecord
   end
 
   # 検索用メソッド
-	def self.search_for(content, method)
-	  if method == 'perfect'
-	  	Customer.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
-	  	               "#{content}", "#{content}", "#{content}", "#{content}")
-	  elsif method == 'forward'
-	  	Customer.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
-	  	              "#{content}%", "#{content}%", "#{content}%", "#{content}%")
-	  elsif method == 'backward'
-	  	Customer.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
-	  	              "%#{content}", "%#{content}", "%#{content}", "%#{content}")
-	  else
+	def self.search_for(content)
 	  	Customer.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
 	  	              "%#{content}%", "%#{content}%", "%#{content}%", "%#{content}%")
-	  end
 	end
 
 end
