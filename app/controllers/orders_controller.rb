@@ -1,23 +1,5 @@
 class OrdersController < ApplicationController
 
-<<<<<<< HEAD
-  def complete
-  end
-
-  def confirm
-  end
-
-  def index
-  end
-
-  def new
-    @order = Order.new
-    @addresses = current_customer.addresses.to_a
-    @shipping_addresses = @addresses.map { |address| [address.postcode + address.address + address.dear, address.id] }
-  end
-
-  def show
-=======
   def new
     unless current_customer.cart_products.present?
       flash.now[:alert] = "商品をカートに入れてください"
@@ -89,7 +71,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @ordered_products_sum = @order.total_price - @order.shipping_cost
->>>>>>> 904db3cd0816f09e9203981671dbbc6658bf9aeb
+
   end
 
 end
