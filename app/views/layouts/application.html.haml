@@ -6,7 +6,6 @@
     = csp_meta_tag
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1"}
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload"
-    = javascript_include_tag "application", "data-turbolinks-track": "reload"
     %link{href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet"}
   %body
     %header.border-bottom
@@ -23,11 +22,13 @@
           = render "layouts/before_signed_in_nav"
 
     %main
-      %p#notice
-        = notice
-      %P#alert
-        = alert
-      = yield
+      - flash.each do |key, value|
+        %p.alert.alert-info
+          = value
+          %button.close{"type" => "button", "data-dismiss" => "alert"} &times;
+
+      .mt-5
+        = yield
 
     %footer.border-top.mt-5
-
+      = link_to '管理者ログイン', new_admin_session_path

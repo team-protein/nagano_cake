@@ -2,17 +2,22 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @orders = Order.all.page(params[:page]).per(10)
+    if params[:user_id].present?
+      customer = Customer.find(params[:user_id])
+      @orders = customer.orders.all.page(params[:page]).per(10)
+    else
+      @orders = Order.all.page(params[:page]).per(10)
+    end
   end
-  
+
   def show
     @order = Order.find(params[:id])
   end
-  
+
   def update
     @order = Order.find(params[:id])
     @order.update(status: params[:status])
-    if @order.status == "payment_confirm" 
+    if @order.status == "payment_confirm"
       @order.ordered_products.map do |o_product|
         o_product.making_status = "waiting"
         o_product.save

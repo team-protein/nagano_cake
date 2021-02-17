@@ -4,57 +4,12 @@
 
       <div class="d-flex justify-content-between">
         <h2>ショッピングカート</h2>
-        <%= link_to 'カートを空にする', destroy_all_cart_products_path, method: :delete, class: 'btn btn-danger' %>
+        <%= link_to 'カートを空にする', destroy_all_cart_products_path, method: :delete, data: { confirm: '本当にすべて削除しますか？' }, remote: true, class: 'btn btn-danger' %>
       </div>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>商品名</th>
-            <th>単価（税込）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @cart_products.each do |cart_product| %>
-          <tr>
-            <td>
-              <%= link_to product_path(cart_product.product) do %>
-                <%= attachment_image_tag cart_product.product, :image, :fill, 50, 40, fallback: 'no_image.png', size: '50x40' %>
-                <%= cart_product.product.name %>
-              <% end %>
-            </td>
-            <td>
-              <%= tax_included_price(cart_product.product.price) %>
-            </td>
-            <td>
-              <%= form_with model: cart_product, local: true do |f| %>
-                <%= f.number_field :quantity, min:1 %>
-              <%= f.submit '変更', class: 'btn btn-success' %>
-              <% end %>
-          </div>
-            </td>
-            <td>
-              <%= subtotal_price(cart_product.product.price, cart_product.quantity) %>
-            </td>
-            <td>
-              <%= link_to '削除する', cart_product_path(cart_product), method: :delete, class: 'btn btn-danger' %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <table class="table col-md-5 ml-auto">
-        <thead>
-          <tr>
-            <th>合計</th>
-            <td><%= tax_excluded_price(@total_price) %></td>
-          </tr>
-        </thead>
-      </table>
+      <div id="cart_index">
+        <%= render 'index', cart_products: @cart_products, total_price: @total_price %>
+      </div>
 
       <div class="mt-5">
         <%= link_to '買い物を続ける', root_path, class: 'btn btn-primary' %>
