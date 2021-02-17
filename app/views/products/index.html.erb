@@ -1,9 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 mx-auto">
-
-      <h2>商品一覧（全<%= @active_products_all.count %>件）</h2>
-
+      <% if params[:genre_id].present? %>
+        <h2><%= @genre.name %>一覧（全<%= @products_count %>件）</h2>
+      <% else %>
+        <h2>商品一覧（全<%= @products_count %>件）</h2>
+      <% end %>
+      <%= render "search/product_search_form" %>
       <div class="products-container d-flex mx-auto">
       <% @products.each do |product| %>
         <div class="one-product">
