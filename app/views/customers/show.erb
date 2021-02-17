@@ -6,8 +6,8 @@
         <h4>登録情報</h4>
         <%= link_to "編集する", edit_customers_path, {class: "btn btn-success px-3 py-1 ml-5"} %>
       </div>
-      <table>
-        <tr><th>氏名</th><td><%= "#{current_customer.last_name} #{current_customer.first_name}" %></td></tr>
+      <table class="table-borderless">
+        <tr><th class="col-8">氏名</th><td class="col-1"><%= "#{current_customer.last_name} #{current_customer.first_name}" %></td></tr>
         <tr><th>カナ</th><td><%= "#{current_customer.last_name_kana} #{current_customer.first_name_kana}" %></td></tr>
         <tr><th>郵便番号</th><td><%= "#{current_customer.postcode}" %></td></tr>
         <tr><th>住所</th><td><%= "#{current_customer.address}" %></td></tr>
