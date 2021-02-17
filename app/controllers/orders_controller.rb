@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(session[:order])
-    session[:order].clear
+    session[:order] = nil
     if @order.save
       current_customer.cart_products.each do |cart_product|
         ordered_product = @order.ordered_products.new

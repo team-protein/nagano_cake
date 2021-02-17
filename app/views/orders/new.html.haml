@@ -1,32 +1,39 @@
 .container
   %h1　注文情報入力
-  %h3　支払い方法
   = form_with url: confirm_orders_path, local: true do |f|
-    .field
+    %h3　支払い方法
+    .field.col-md-11.mx-auto
       = f.radio_button :payment_method, 0, checked: true
       クレジットカード
+      %br
       = f.radio_button :payment_method, 1
       銀行振込
-    %h3 お届け先
-    .field
+    %h3.pl-4 お届け先
+    .field.col-md-11.mx-auto
       = f.radio_button :shipping_to, 0, checked: true
       ご自身の住所
-      %br #{current_customer.postcode} #{current_customer.address}
-      %br #{current_customer.last_name} #{current_customer.first_name}
+      %p.mb-0.ml-4 #{current_customer.postcode} #{current_customer.address}
+      %p.ml-4 #{current_customer.last_name} #{current_customer.first_name}
       = f.radio_button :shipping_to, 1
       登録済み住所から選択
-      .field
+      .field.ml-4
         = f.select :address_id, @addresses
       = f.radio_button :shipping_to, 2
       新しいお届け先
-      .field
-        = f.label :postcode, "郵便番号（ハイフンなし）"
-        = f.text_field :postcode
-      .field
-        = f.label :address, "住所"
-        = f.text_field :address
-      .field
-        = f.label :dear, "宛名"
-        = f.text_field :dear
-      .actions.mt-4
-        = f.submit "確認画面へ進む", class: "btn btn-success"
+      .row
+        .col-md-3
+          .field.ml-4
+            = f.label :postcode, "郵便番号（ハイフンなし）"
+          .field.ml-4
+            = f.label :address, "住所"
+          .field.ml-4.mb-0
+            = f.label :dear, "宛名"
+        .col-md-4
+          .field
+            = f.text_field :postcode, class: "mb-2", placeholder: "0000000"
+            %br
+            = f.text_field :address, size: 50, class: "mb-2", placeholder: "東京都渋谷区代々木神園町0-0"
+            %br
+            = f.text_field :dear, class: "mb-2", placeholder: "令和道子"
+      .actions.d-flex.justify-content-center
+        = f.submit "確認画面へ進む", class: "btn btn-primary"
