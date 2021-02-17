@@ -1,23 +1,40 @@
 <div class="container">
-  <h2>注文詳細</h2>
+  <h2>注文履歴詳細</h2>
+  
   <div class="row">
-      
-    <div class="col-md-2">
-      <p>購入者</p>
-      <p>注文日</p>
-      <p>配送先</p>
-      <br>
-      <p>支払方法</p>
-      <p>注文ステータス</p>
-    </div>
-    
-    <div class="col-md-10">
-      <p><%= "#{@order.customer.last_name} #{@order.customer.first_name}" %></p>
-      <p><%= "#{@order.created_at}"%></p>
-      <p><%= "〒#{@order.postcode} #{@order.address}" %></p>
-      <p><%= "#{@order.dear}" %></p>
-      <p><%= "#{@order.payment_method}" %></p>
-      <p><%= "#{@order.status}" %></p>
+    <div class="col-md-8">
+      <table class="table-borderless table-light" style="width: 100%">
+        <tbody style="width: 100%">
+          <tr>
+            <th style="width:25%">購入者</th>
+            <td style="width:75%"><%= "#{@order.customer.last_name} #{@order.customer.first_name}" %></td>
+          </tr>
+          <tr>
+            <th style="width:25%">注文日</th>
+            <td style="width:75%"><%= "#{@order.created_at}"%></td>
+          </tr>
+          <tr>
+            <th style="width:25%">配送先</th>
+            <td style="width:75%">
+              <%= "〒#{@order.postcode} #{@order.address}" %><br>
+              <%= "#{@order.dear}" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width:25%">支払方法</th>
+            <td style="width:75%"><%= "#{@order.payment_method_i18n}" %></td>
+          </tr>
+          <tr>
+            <th style="width:25%">注文ステータス</th>
+            <td style="width:75%">
+              <%= form_with(url: admin_order_path(@order), method: :patch, local: true) do |f| %>
+              <%= f.select :status, Order.statuses_i18n.keys.map{|k| [I18n.t("enums.order.status.#{k}"), k]}, {selected: @order.status} %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   
@@ -38,9 +55,9 @@
           <% @order.ordered_products.each do |o_product| %>
           <tr>
             <td><%= "#{o_product.product.name}" %></td>
-            <td><%= o_product.tax_included_price %>円</td>
+            <td><%= tax_excluded_price(o_product.tax_included_price) %>円</td>
             <td><%= o_product.quantity %></td>
-            <td><%= total = o_product.tax_included_price * o_product.quantity %>円</td>
+            <td><%= tax_excluded_price(o_product.tax_included_price * o_product.quantity) %>円</td>
             <%= form_with(url: admin_order_ordered_product_path(@order.id, o_product.id), method: :patch, local: true) do |f| %>
             <td>
                <%= f.select :making_status, OrderedProduct.making_statuses_i18n.keys.map{|k| [I18n.t("enums.ordered_product.making_status.#{k}"), k]}, {selected: o_product.making_status} %>
@@ -54,9 +71,9 @@
     </div>
     <div class="col-md-4">
       <div>
-        <p><%= "商品合計 #{@order.total_price - @order.shipping_cost}円" %></p>
-        <p><%= "送料 #{@order.shipping_cost}円" %></p>
-        <p><%= "請求合計額 #{@order.total_price}円" %></p>
+        <p><%= "商品合計 #{tax_excluded_price(@order.total_price - @order.shipping_cost)}円" %></p>
+        <p><%= "送料 #{tax_excluded_price(@order.shipping_cost)}円" %></p>
+        <p><%= "請求合計額 #{tax_excluded_price(@order.total_price)}円" %></p>
       </div>
     </div>
   </div>
