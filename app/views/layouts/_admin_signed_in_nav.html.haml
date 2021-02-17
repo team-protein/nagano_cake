@@ -1,6 +1,8 @@
-%ul.navbar-nav.ml-auto
-  %li= link_to "商品一覧", admin_products_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
-  %li= link_to "会員一覧", admin_customers_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
-  %li= link_to "注文履歴一覧", admin_orders_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
-  %li= link_to "ジャンル一覧", admin_genres_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
-  %li= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-dark mr-5"
+.flex-column.ml-auto
+  %ul.navbar-nav
+    %li= link_to "商品一覧", admin_products_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
+    %li= link_to "会員一覧", admin_customers_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
+    %li= link_to "注文履歴一覧", admin_orders_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
+    %li= link_to "ジャンル一覧", admin_genres_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
+    %li= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-dark mr-5"
+  = render 'admin/search/search_form'
