@@ -30,7 +30,6 @@ Rails.application.routes.draw do
       get "complete"
     end
   end
-
   resources :addresses, except: [:new, :show]
 
   namespace :admin do
