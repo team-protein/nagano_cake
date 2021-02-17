@@ -2,7 +2,6 @@
   <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
     <%= f.text_field :content, placeholder: '会員名 / 商品名' %>
     <%= f.select :model, options_for_select({ '会員' => 'customer', '商品' => 'product' }) %>
-    <%= f.select :method, options_for_select({ '完全一致' => 'perfect', '前方一致' => 'forward', '後方一致' => 'backward', '部分一致' => 'partial' }) %>
-    <%= f.submit '検索', class: 'btn btn-sm btn-primary' %>
+    <%= f.submit "\uF002", class: 'search-btn btn btn-sm btn-outline-primary' %>
   <% end %>
 </div>

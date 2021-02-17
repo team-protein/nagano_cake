@@ -1,0 +1,58 @@
+.container
+  %h2 注文履歴一覧
+  .row.mt-5
+    .col-md-6
+      %h3 注文情報
+      %table.table
+        %tr
+          %th 注文日
+          %td
+            = @order.created_at.strftime("%Y/%m/%d")
+        %tr
+          %th 配送先
+          %td
+            〒#{@order.postcode}
+            = @order.address
+            = @order.dear
+        %tr
+          %th 支払い方法
+          %td
+            = @order.payment_method_i18n
+        %tr
+          %th ステータス
+          %td
+            = @order.status_i18n
+    .col-md-5.offset-1
+      %h3 請求情報
+      %table.table
+        %tr
+          %td 商品合計
+          %td 
+            = @ordered_products_sum.to_s(:delimited, delimiter: ',')
+        %tr
+          %td 配送料
+          %td
+            = @order.shipping_cost.to_s(:delimited, delimiter: ',')
+        %tr
+          %th.font-weight-bold ご請求額
+          %td
+            = @order.total_price.to_s(:delimited, delimiter: ',')
+  .row
+    %table.table
+      %thead
+        %tr
+          %th 商品
+          %th 単価（税込）
+          %th 個数
+          %th 小計
+      %tbody
+        - @order.ordered_products.each do |ordered_product|
+          %tr
+            %td
+              = ordered_product.product.name
+            %td
+              = tax_included_price(ordered_product.product.price)
+            %td
+              = ordered_product.quantity
+            %td
+              = subtotal_price(ordered_product.product.price, ordered_product.quantity)

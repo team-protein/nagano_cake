@@ -1,6 +1,7 @@
 class OrderedProduct < ApplicationRecord
   belongs_to :product
-  belongs_to :orders
+  belongs_to :order
+
   
   validates :quantity, presence: true
   validates :tax_included_price, presence: true
@@ -13,4 +14,5 @@ class OrderedProduct < ApplicationRecord
     working: 2, #製作中
     completed: 3, #製作完了
   }
+
 end
