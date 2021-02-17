@@ -12,19 +12,21 @@
     %tbody
       - current_customer.orders.each do |order|
         %tr
-          %td
-            = order.created_at.strftime("%y/%m/%d")
+          %td.align-middle
+            = order.created_at.strftime("%Y/%m/%d")
           %td
             〒#{order.postcode}
+            %br
             = order.address
+            %br
             = order.dear
-          %td
+          %td.align-middle
             - order.ordered_products.each do |ordered_product|
               = ordered_product.product.name
               %br
-          %td
-            = order.total_price
-          %td
-            = order.status
-          %td
-            = link_to "表示する", order_path(order)
+          %td.align-middle
+            #{order.total_price.to_s(:delimited, delimiter: ',')}円
+          %td.align-middle
+            = order.status_i18n
+          %td.align-middle.order_show_path.align-middle
+            = link_to "表示する", order_path(order), class: "btn btn-primary"
