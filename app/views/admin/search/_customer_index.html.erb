@@ -1,0 +1,42 @@
+<% if records.empty? %>
+  <p class="text-secondary">該当する会員は存在しません</p>
+<% else %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% records.each do |customer| %>
+    <tr>
+      <td>
+        <%= customer.id %>
+      </td>
+      <td>
+        <%= link_to admin_customer_path(customer) do %>
+          <%= "#{customer.last_name} #{customer.first_name}" %>
+        <% end %>
+      </td>
+      <td>
+        <%= customer.email %>
+      </td>
+      <td>
+        <% if customer.is_deleted == true %>
+          <span class="text-secondary">退会</span>
+        <% else %>
+          <span class="text-success">有効</span>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+  <%= paginate records %>
+</div>
+<% end %>

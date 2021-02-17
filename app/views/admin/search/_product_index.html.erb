@@ -1,0 +1,44 @@
+<% if records.empty? %>
+  <p class="text-secondary">該当する商品は存在しません</p>
+<% else %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% records.each do |product| %>
+    <tr>
+      <td>
+        <%= product.id %>
+      </td>
+      <td>
+        <%= link_to product.name, admin_product_path(product) %>
+      </td>
+      <td>
+        <%= tax_excluded_price(product.price) %>
+      </td>
+      <td>
+        <%= product.genre.name %>
+      </td>
+      <td>
+        <% if product.is_active == true %>
+          <span class="text-success">販売中</span>
+        <% else %>
+          <span class="text-secondary">販売停止中</span>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+  <%= paginate records %>
+</div>
+<% end %>

@@ -12,17 +12,17 @@
           </tr>
         </thead>
         <tbody>
-          <% Order.all.order(created_at: "DESC").each do |order| %>
+          <% @orders.order(created_at: "DESC").each do |order| %>
           <tr>
             <td><%= link_to "#{order.created_at.to_s(:datetime_jp)}", admin_order_path(order) %></td>
             <td><%= "#{order.customer.last_name} #{order.customer.first_name}" %></td>
             <td><%= order.ordered_products.sum{|product| product[:quantity]} %></td>
-            <td><%= "#{order.status}" %></td>
+            <td><%= order.status %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
-    
+      <%= paginate @orders %>
     </div>
   </div>
 </div>

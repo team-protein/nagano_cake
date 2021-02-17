@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+    <% if @model == 'customer' %>
+      <h2>会員検索結果 "<%= @content %>"</h2>
+      <%= render 'customer_index', records: @records %>
+    <% else %>
+      <h2>商品検索結果 "<%= @content %>"</h2>
+      <%= render 'product_index', records: @records %>
+    <% end %>
+    </div>
+  </div>
+</div>
