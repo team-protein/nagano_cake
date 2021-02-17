@@ -42,11 +42,11 @@
     .col-md-2
       %h3 お届け先
     .col-md-10
-      #{@order.postcode}#{@order.address}
+      〒#{@order.postcode} #{@order.address}
       %br #{@order.dear}
   .d-flex.justify-content-center.mb-5
     = link_to "注文を確定する", orders_path, method: :post, class: "btn btn-success"
-    
+
           
     
 
