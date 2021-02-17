@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h2>商品検索結果 "<%= @content %>"</h2>
+      <div class="products-container d-flex mx-auto mt-4">
+      <% if @records.empty? %>
+        <p class="text-secondary">該当する商品は存在しません</p>
+      <% else %>
+        <% @records.each do |product| %>
+        <div class="one-product">
+          <%= link_to product_path(product) do %>
+            <div class="product-img">
+              <%= attachment_image_tag product, :image, :fill, 200, 150, fallback: 'no_image.png', size: '200x150' %>
+            </div>
+            <p class="product-name"><%= product.name %></p>
+          <% end %>
+          <p><%= tax_included_price(product.price) %>円</p>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <%= paginate @records %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

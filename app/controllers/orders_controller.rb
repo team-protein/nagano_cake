@@ -36,7 +36,11 @@ class OrdersController < ApplicationController
     session[:postcode] = params[:postcode]
     session[:address] = params[:address]
     session[:dear] = params[:dear]
-    render :new if @order.invalid?
+    if @order.invalid?
+      flash.now[:alert] = "正しい住所を入力してください"
+      @addresses = current_customer.addresses.to_a.map {|address| ["〒#{address.postcode} #{address.address} #{address.dear}", address.id]}
+      render :new 
+    end
   end
 
   def create
