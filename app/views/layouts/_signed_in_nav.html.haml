@@ -1,5 +1,5 @@
-%p.mb-0.mr-5.ml-auto ようこそ、#{current_customer.last_name}さん！
-.flex-column.ml-auto
+%p.pb-3.mr-5.ml-auto ようこそ、#{current_customer.last_name}さん！
+.flex-column
   %ul.navbar-nav
     %li= link_to "マイページ", customers_my_page_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
     %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
