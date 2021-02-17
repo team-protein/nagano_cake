@@ -17,8 +17,8 @@
             = attachment_image_tag product, :image, size: "230x150", fallback: "no_image.png"
             %p.mt-3.mb-0
               = product.name
-            %p
-              = tax_included_price(product.price)
+          %p
+            = "#{tax_included_price(product.price)}円"
     .d-flex.justify-content-end
       = link_to "すべての商品を見る>", products_path, class: "text-right"
 
