@@ -36,7 +36,6 @@ class CartProductsController < ApplicationController
     if @cart_product.update(cart_product_params)
       @cart_products = CartProduct.where(customer_id: current_customer.id)
       @total_price = @cart_products.sum{|cart_product|cart_product.product.price * 1.1 * cart_product.quantity}
-      render 'update_success'
     else
       render 'update_error'
     end

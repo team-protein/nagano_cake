@@ -27,14 +27,9 @@
         %p.alert.alert-info
           = value
           %button.close{"type" => "button", "data-dismiss" => "alert"} &times;
-      // %p#notice
-      //   = notice
-      // %P#alert
-      //   = alert
 
       .mt-5
         = yield
 
     %footer.border-top.mt-5
       = link_to '管理者ログイン', new_admin_session_path
-
