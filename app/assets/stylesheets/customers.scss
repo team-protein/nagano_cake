@@ -1,3 +1,26 @@
 // Place all the styles related to the Customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.box{
+  h4 {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0;
+  }
+  .btn{
+    display: inline-block;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  th,td {
+  border: solid 1px black;
+  /*実線 1px 黒*/
+  }
+  th{
+    padding-right: 50px;
+    background-color: #EEEEEE;
+  }
+}
+
