@@ -26,7 +26,7 @@
   </div>
   
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-10">
       <table class="table table-bordered">
         <thead class="thead-light">
           <tr>
@@ -43,8 +43,8 @@
             <td><%= address.address %></td>
             <td><%= address.dear %></td>
             <td>
-              <%= link_to "編集する", edit_address_path(address.id), {class: "btn btn-success btn-edit", data: {"turbolinks" => false}} %>
-              <%= link_to "削除する", address_path(address.id), {method: :delete, class: "btn btn-danger btn-destroy ml-3"}  %>
+              <%= link_to "編集する", edit_address_path(address.id), {class: "btn btn-success btn-edit btn-address", data: {"turbolinks" => false}} %>
+              <%= button_to "削除する", address_path(address.id), {method: :delete, class: "btn btn-danger ml-3"}  %>
             </td>
           </tr>
           <% end %>
