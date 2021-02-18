@@ -14,7 +14,7 @@ class Order < ApplicationRecord
     shipping_complete: 4 #発送完了
   }
   
-  validates :postcode, presence: true
+  validates :postcode, presence: true, length: { is: 7 }  
   validates :address, presence: true
   validates :dear, presence: true
 end
