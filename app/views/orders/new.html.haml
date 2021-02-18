@@ -14,7 +14,7 @@
       ご自身の住所
       %p.mb-0.ml-4 〒#{current_customer.postcode} #{current_customer.address}
       %p.ml-4 #{current_customer.last_name} #{current_customer.first_name}
-      
+
       - if current_customer.addresses.present?
         = f.radio_button :shipping_to, 1
         登録済み住所から選択
@@ -42,3 +42,6 @@
             = f.text_field :dear, class: "mb-2", placeholder: "令和道子"
       .actions.d-flex.justify-content-center
         = f.submit "確認画面へ進む", class: "btn btn-primary"
+
+
+
