@@ -19,3 +19,8 @@
 //= require jquery
 //= require jquery.jpostal
 //= require_tree .
+
+
+ document.addEventListener("turbolinks:load", function() {
+    console.log("test");
+});

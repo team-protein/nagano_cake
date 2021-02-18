@@ -43,6 +43,11 @@ class OrdersController < ApplicationController
       render :new
     end
   end
+  
+  def redirect
+    flash[:alert] = "最初から入力してください"
+    redirect_to  new_order_path
+  end
 
   def create
     @order = current_customer.orders.new(session[:order])
