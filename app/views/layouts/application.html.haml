@@ -35,6 +35,8 @@
           %p.alert.alert-danger
             = value
             %button.close{"type" => "button", "data-dismiss" => "alert"} &times;
+      - if content_for?(:body_attributes)
+        = yield(:body_attributes)
       .mt-5
         = yield
     %footer.border-top.mt-5
