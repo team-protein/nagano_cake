@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :cart_product do
-    quantity { Faker::Number.number(1) }
+    quantity { rand(1..99) }
     customer
     product
   end
