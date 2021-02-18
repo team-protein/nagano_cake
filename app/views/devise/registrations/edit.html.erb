@@ -17,10 +17,12 @@
         
         <div class="actions">
           <%= f.submit "編集内容を保存", class: "btn btn-success px-5 py-1" %>
-          <%= link_to "退会する", customers_delete_confirm_path, {class: "btn btn-danger px-4 py-1 btn-taikai"} %>
         </div>
         
       <% end %>
+    </div>
+    <div class="col-md-2 d-flex flex-column-reverse offset-2">
+      <%= link_to "退会する", customers_delete_confirm_path, {class: "btn btn-danger"} %>
     </div>
   </div>
 </div>
