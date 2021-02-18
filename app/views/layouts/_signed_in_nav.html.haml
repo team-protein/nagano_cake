@@ -4,3 +4,7 @@
   %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-5"
   %li= link_to "カート", cart_products_path , class: "nav-link text-dark btn btn-outline-dark mr-5"
   %li= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-dark mr-5"
+= form_with url: products_path, method: :get, local: :true do |f|
+  .input-group-append.my-3.ml-4
+    = f.search_field :word, value: params[:word], placeholder: '商品を検索', size: 25
+    = f.submit "\uF002", class: 'search-btn btn btn-sm btn-outline-primary'
