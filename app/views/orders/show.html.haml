@@ -3,7 +3,7 @@
   .row.mt-5
     .col-md-6
       %h3 注文情報
-      %table.table
+      %table.table.table-bordered
         %tr
           %th 注文日
           %td
@@ -24,7 +24,7 @@
             = @order.status_i18n
     .col-md-5.offset-1
       %h3 請求情報
-      %table.table
+      %table.table.table-bordered
         %tr
           %td 商品合計
           %td 
@@ -38,21 +38,23 @@
           %td
             = @order.total_price.to_s(:delimited, delimiter: ',')
   .row
-    %table.table
-      %thead
-        %tr
-          %th 商品
-          %th 単価（税込）
-          %th 個数
-          %th 小計
-      %tbody
-        - @order.ordered_products.each do |ordered_product|
+    .col-md-8
+      %h3 注文内容
+      %table.table.table-bordered
+        %thead
           %tr
-            %td
-              = ordered_product.product.name
-            %td
-              = tax_included_price(ordered_product.product.price)
-            %td
-              = ordered_product.quantity
-            %td
-              = subtotal_price(ordered_product.product.price, ordered_product.quantity)
+            %th 商品
+            %th 単価（税込）
+            %th 個数
+            %th 小計
+        %tbody
+          - @order.ordered_products.each do |ordered_product|
+            %tr
+              %td
+                = ordered_product.product.name
+              %td
+                = tax_included_price(ordered_product.product.price)
+              %td
+                = ordered_product.quantity
+              %td
+                = subtotal_price(ordered_product.product.price, ordered_product.quantity)

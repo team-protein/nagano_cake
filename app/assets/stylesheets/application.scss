@@ -44,7 +44,13 @@ a.text-dark:hover {
   color: #f8f9fa !important;
 }
 
+.nav-name {
+  white-space: nowrap;
+}
 
+#navbarNavDropdown.collapse.navbar-collapse {
+  width: 600px;
+}
 
 #notice {
   color: green;
