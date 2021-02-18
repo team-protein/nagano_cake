@@ -1,21 +1,20 @@
-<h2>ログイン</h2>
-
-<h4>会員の方はこちらからログイン</h4>
-<%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-4">ログイン</h2>
+      <div class="new-registration-form">
+        <h4>会員の方はこちらからログイン</h4>
+        <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+         <table class="table table-borderless">
+          <tr><th>メールアドレス</th><td><%= f.text_field :email, size: 50 %></td></tr>
+          <tr><th>パスワード(6文字以上)</th><td><%= f.password_field :password, size: 50 %></td></tr>
+          <tr><th></th><td><%= f.submit "ログイン", class: "btn btn-primary px-5" %></td></tr>
+        </table>
+        <% end %>
+        <h4>会員登録がお済みでない方</h4>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "ログイン", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-<h4>会員登録がお済みでない方</h4>
-<%= render "devise/shared/links" %>
+</div>
