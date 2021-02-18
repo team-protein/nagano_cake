@@ -1,5 +1,5 @@
-describe '登録情報変更退会' do
-
+describe '登録情報変更退会' 
+  
     it 'マイページにて会員情報編集ボタンを押下する' do
       click_button
     end
