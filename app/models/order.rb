@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   }
 
   
-  validates :postcode, presence: true
+  validates :postcode, presence: true, length: { is: 7 }  
   validates :address, presence: true
   validates :dear, presence: true
 
