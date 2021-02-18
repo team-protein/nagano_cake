@@ -21,7 +21,7 @@
           = render "layouts/signed_in_nav"
         - if customer_signed_in? == false && request.fullpath.exclude?("admin")
           = render "layouts/before_signed_in_nav"
-
+        
     %main
       - flash.each do |key, value|
         - if key == 'notice'
