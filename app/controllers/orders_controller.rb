@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
   end
   
   def redirect
-    flash[:alert] = "最初から入力してください"
+    flash.now[:alert] = "最初から入力してください"
     redirect_to  new_order_path
   end
 
@@ -81,6 +81,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @ordered_products_sum = @order.total_price - @order.shipping_cost
+
   end
 
 end

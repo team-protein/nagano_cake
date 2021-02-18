@@ -9,7 +9,8 @@ FactoryBot.define do
     phone_number { Faker::PhoneNumber.phone_number }
     postcode { Faker::Number.number(digits: 7) }
     address { Gimei.address.kanji }
-    encrypted_password { "tttttt" }
     is_deleted { "false" }
+    password { 'password' }
+    password_confirmation { 'password' }
   end
 end
