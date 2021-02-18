@@ -6,6 +6,7 @@
     = csp_meta_tag
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1"}
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %link{href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet"}
   %body
     %header.border-bottom
@@ -20,12 +21,17 @@
           = render "layouts/signed_in_nav"
         - if customer_signed_in? == false && request.fullpath.exclude?("admin")
           = render "layouts/before_signed_in_nav"
-
+        
     %main
       - flash.each do |key, value|
-        %p.alert.alert-info
-          = value
-          %button.close{"type" => "button", "data-dismiss" => "alert"} &times;
+        - if key == 'notice'
+          %p.alert.alert-success
+            = value
+            %button.close{"type" => "button", "data-dismiss" => "alert"} &times;
+        - else
+          %p.alert.alert-danger
+            = value
+            %button.close{"type" => "button", "data-dismiss" => "alert"} &times;
 
       .mt-5
         = yield
