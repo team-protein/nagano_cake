@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
   end
   
   def redirect
-    flash[:alert] = "最初から入力してください"
+    flash.now[:alert] = "最初から入力してください"
     redirect_to  new_order_path
   end
 

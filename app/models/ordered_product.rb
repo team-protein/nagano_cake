@@ -2,11 +2,6 @@ class OrderedProduct < ApplicationRecord
   belongs_to :product
   belongs_to :order
 
-  
-  validates :quantity, presence: true
-  validates :tax_included_price, presence: true
-  validates :making_status, presence: true
-  
 
   enum making_status: {
     impossible: 0, #製作不可
