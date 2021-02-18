@@ -1,13 +1,15 @@
 FactoryBot.define do
   factory :customer do
-    last_name { "hoge" }
-    first_name { "hoge" }
-    last_name_kana { "hoge" }
-    first_name_kana { "hoge" }
-    phone_number { Faker::PhoneNumber }
-    postcode { "0000000" }
-    address { Faker::Address.full_address }
+    gimei = Gimei::Name.new
+    last_name { gimei.last.kanji }
+    first_name { gimei.first.kanji }
+    last_name_kana { gimei.last.katakana }
+    first_name_kana { gimei.first.katakana }
     email { Faker::Internet.email }
+    phone_number { Faker::PhoneNumber.phone_number }
+    postcode { Faker::Number.number(digits: 7) }
+    address { Gimei.address.kanji }
+    is_deleted { "false" }
     password { 'password' }
     password_confirmation { 'password' }
   end
