@@ -26,12 +26,6 @@ nav {
   height: 120px;
 }
 
-.search-form {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 5px;
-}
-
 footer {
   height: 100px;
 }
@@ -62,4 +56,8 @@ a.text-dark:hover {
 
 #error_explanation {
   color: red;
+}
+
+.field_with_errors {
+  display: contents;
 }

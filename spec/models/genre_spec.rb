@@ -26,4 +26,8 @@ RSpec.describe Genre, 'Genreモデルのテスト', type: :model do
       end
     end
   end
+<<<<<<< Updated upstream
 end
+=======
+end
+>>>>>>> Stashed changes
