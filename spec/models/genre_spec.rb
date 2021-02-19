@@ -3,19 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe Genre, 'Genreモデルのテスト', type: :model do
-  it '有効な投稿内容は保存されるか' do
-    expect(FactoryBot.build(:genre)).to be_valid
+  subject { genre.valid? }
+  let(:other_genre) { create(:genre) }
+  let!(:genre) { build(:genre) }
+
+  describe '実際に保存してみる' do
+    it '有効な投稿内容は保存されるか' do
+      is_expected.to eq true
+    end
   end
+
   context 'バリデーションのテスト' do
     it 'nameカラムが空欄でないこと' do
-      genre = FactoryBot.build(:genre, name: nil)
-      expect(genre).to be_invalid
+      genre.name = ''
+      is_expected.to eq false
       expect(genre.errors[:name]).to include("を入力してください")
     end
     it 'nameカラムが一意であること' do
-      other_genre = FactoryBot.create(:genre)
-      genre = FactoryBot.build(:genre, name: other_genre.name)
-      expect(genre).to be_invalid
+      genre.name = other_genre.name
+      is_expected.to eq false
     end
   end
 
