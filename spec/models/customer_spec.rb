@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 describe '登録情報変更退会'
-=======
-describe '登録情報変更退会' do
->>>>>>> Stashed changes
 
     it 'マイページにて会員情報編集ボタンを押下する' do
       click_button

@@ -32,11 +32,7 @@ RSpec.describe Product, 'Productモデルのテスト', type: :model do
       expect(product.errors[:price]).to include("を入力してください")
     end
   end
-<<<<<<< Updated upstream
 
-=======
-    
->>>>>>> Stashed changes
   describe 'アソシエーションのテスト' do
     context 'Genreモデルとの関係' do
       it 'N:1になっている' do
@@ -44,8 +40,4 @@ RSpec.describe Product, 'Productモデルのテスト', type: :model do
       end
     end
   end
-<<<<<<< Updated upstream
 end
-=======
-end
->>>>>>> Stashed changes
