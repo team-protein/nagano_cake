@@ -4,9 +4,9 @@ class Admin::OrdersController < ApplicationController
   def index
     if params[:user_id].present?
       customer = Customer.find(params[:user_id])
-      @orders = customer.orders.all.page(params[:page]).per(10)
+      @orders = customer.orders.page(params[:page]).per(10)
     else
-      @orders = Order.all.page(params[:page]).per(10)
+      @orders = Order.page(params[:page]).per(10)
     end
   end
 

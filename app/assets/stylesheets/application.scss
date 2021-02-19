@@ -25,7 +25,7 @@ body {
   width: 120px;
 }
 
-.search-form {
+.admin-search-form {
   display: flex;
   justify-content: flex-end;
   margin-top: 5px;
@@ -47,25 +47,17 @@ a.text-dark:hover {
   white-space: nowrap;
 }
 
-.nav-item {
-  width: 528px;
-}
-
-.product_search_text {
+.search-text {
   width: 370px;
 }
 
 @media screen and (max-width:991px) {
-  .product_search {
+  .search-form {
     width: 350px;
   }
   
-  .product_search_text {
+  .search-text {
   width: 100%;
-  }
-  
-  .nav-item {
-    width: 350px;
   }
 }
 
