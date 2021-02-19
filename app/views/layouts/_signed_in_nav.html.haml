@@ -1,7 +1,11 @@
 %p.mr-3.ml-auto.nav-name ようこそ、#{current_customer.last_name}さん！
-%ul.navbar-nav
-  %li= link_to "マイページ", customers_my_page_path, class: "nav-link text-dark btn btn-outline-dark mr-3"
-  %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-3"
-  %li= link_to "カート", cart_products_path , class: "nav-link text-dark btn btn-outline-dark mr-3"
-  %li= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-dark mr-5"
-= render "search/product_search_form"
+.flex-column.nav-item
+  #navbarNavDropdown.collapse.navbar-collapse
+    %ul.navbar-nav
+      %li= link_to "マイページ", customers_my_page_path, class: "nav-link text-dark btn btn-outline-dark mr-3"
+      %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-3"
+      %li= link_to "カート", cart_products_path , class: "nav-link text-dark btn btn-outline-dark mr-3"
+      %li= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-dark mr-5"
+  = render "search/product_search_form"
+%button{class: "navbar-toggler", type: "button", "data-toggle": "collapse", "data-target": "#navbarNavDropdown", "aria-controls": "navbarNavDropdown", "aria-expanded": "false", "aria-label": "Toggle navigation"}
+  %span.navbar-toggler-icon

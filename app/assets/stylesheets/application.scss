@@ -17,13 +17,12 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+body {
+  overflow: hidden visible;
+}
 
 .nav-link {
   width: 120px;
-}
-
-nav {
-  height: 120px;
 }
 
 .search-form {
@@ -48,8 +47,26 @@ a.text-dark:hover {
   white-space: nowrap;
 }
 
-#navbarNavDropdown.collapse.navbar-collapse {
-  width: 600px;
+.nav-item {
+  width: 528px;
+}
+
+.product_search_text {
+  width: 370px;
+}
+
+@media screen and (max-width:991px) {
+  .product_search {
+    width: 350px;
+  }
+  
+  .product_search_text {
+  width: 100%;
+  }
+  
+  .nav-item {
+    width: 350px;
+  }
 }
 
 #notice {
