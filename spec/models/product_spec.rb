@@ -32,7 +32,7 @@ RSpec.describe Product, 'Productモデルのテスト', type: :model do
       expect(product.errors[:price]).to include("を入力してください")
     end
   end
-    
+
   describe 'アソシエーションのテスト' do
     context 'Genreモデルとの関係' do
       it 'N:1になっている' do

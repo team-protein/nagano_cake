@@ -26,10 +26,10 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create, :index, :show] do
     collection do
       post "confirm"
+      get "confirm" => "orders#redirect"
       get "complete"
     end
   end
-
   resources :addresses, except: [:new, :show]
 
   namespace :admin do
@@ -41,5 +41,4 @@ Rails.application.routes.draw do
     end
     get '/search' => 'search#search'
   end
-
 end

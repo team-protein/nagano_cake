@@ -12,6 +12,13 @@
   }
 }
 
+.taikai-box{
+  text-align: right;
+  display: table;
+  height: 100％;
+}
+
 .btn-taikai{
-  margin-left: 200px;
+  display: table-cell;
+　vertical-align: bottom;
 }

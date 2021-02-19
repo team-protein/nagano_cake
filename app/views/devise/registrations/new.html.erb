@@ -1,68 +1,33 @@
-<div class="new-registration-form">
-  <h3>新規会員登録</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-4">新規会員登録</h2>
 
-  <%= form_with model: resource, url: customer_registration_path, local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  
-  <div class="field">
-    <%= f.label :last_name, "（姓）" %>
-    <%= f.text_field :last_name, autofocus: true %>
+      <div class="new-registration-form">
+        
+        <%= form_with model: resource, url: customer_registration_path, local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        
+         <table class="table table-borderless">
+          <tr><th>氏名</th><td><%= f.text_field :last_name, placeholder: "(姓)" %></td><td><%= f.text_field :first_name, placeholder: "(名)" %></td></tr>
+          <tr><th>フリガナ</th><td><%= f.text_field :last_name_kana, placeholder: "(セイ)" %></td><td><%= f.text_field :first_name_kana, placeholder: "(メイ)" %></td></tr>
+          <tr><th>メールアドレス</th><td><%= f.text_field :email %></td></tr>
+          <tr><th>郵便番号(ハイフンなし)</th><td><%= f.text_field :postcode %></td></tr>
+          <tr><th>住所</th><td colspan="2"><%= f.text_field :address, size: 50 %></td></tr>
+          <tr><th>電話番号</th><td><%= f.text_field :phone_number %></td></tr>
+          <tr><th>パスワード(6文字以上)</th><td><%= f.password_field :password %></td></tr>
+          <tr><th>パスワード(6文字以上)</th><td><%= f.password_field :password_confirmation %></td></tr>
+          <tr><th></th><td><%= f.submit "新規登録", class: "btn btn-success px-5" %></td></tr>
+        </table>
+        
+        <% end %>
+        
+      </div>
+      
+      <h3>既に登録済みの方</h2>
+      <%= render "devise/shared/links" %>
+      
+    </div>
   </div>
-  
-  <div class="field">
-    <%= f.label :first_name, "（名）" %>
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :last_name_kana, "（セイ）" %>
-    <%= f.text_field :last_name_kana, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :first_name_kana, "(メイ）" %>
-    <%= f.text_field :first_name_kana, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :postcode, "郵便番号（ハイフンなし）" %><br/>
-    <%= f.text_field :postcode, autofocus: true, id: "user_postcode" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :address, "住所" %> <br/>
-    <%= f.text_field :address, autofocus: true, class: "address", id: "user_address_street" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :phone_number, "電話番号（ハイフンなし）" %><br/>
-    <%= f.text_field :phone_number, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :password, "パスワード" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :password_confirmation, "パスワード（確認用）" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit "新規登録", class: "btn btn-success" %>
-  </div>
-  <% end %>
-
 </div>
 
-<h3>既に登録済みの方</h2>
-<%= render "devise/shared/links" %>

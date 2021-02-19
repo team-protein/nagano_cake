@@ -2,7 +2,7 @@
   %h2 注文情報確認
   .row
     .col-md-8
-      %table.table
+      %table.table.table-bordered
         %thead
           %tr
             %th 商品名
@@ -13,7 +13,7 @@
           - current_customer.cart_products.each do |cart_product|
             %tr
               %td
-                = attachment_image_tag cart_product.product, :image, :fill, 30, 20, fallback: 'no_image.png', size: '30x20'
+                = attachment_image_tag cart_product.product, :image, fallback: 'no_image.png', size: '30x20'
                 = cart_product.product.name
               %td
                 = tax_included_price(cart_product.product.price)
@@ -21,9 +21,9 @@
                 = cart_product.quantity
               %td
                 = subtotal_price(cart_product.product.price, cart_product.quantity)
-              
+
     .col-md-4
-      %table.table
+      %table.table.table-bordered
         %tr
           %th 送料
           %td #{@order.shipping_cost.to_s(:delimited, delimiter: ',')}
@@ -33,7 +33,7 @@
         %tr
           %th 請求金額
           %td #{@order.total_price.to_s(:delimited, delimiter: ',')}
-  .row        
+  .row
     .col-md-2
       %h3 支払い方法
     .col-md-10
@@ -47,6 +47,6 @@
   .d-flex.justify-content-center.mb-5
     = link_to "注文を確定する", orders_path, method: :post, class: "btn btn-success"
 
-          
-    
+
+
 

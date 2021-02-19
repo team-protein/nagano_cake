@@ -13,7 +13,7 @@
     <tr class="cart_product_<%= cart_product.id %>">
       <td>
         <%= link_to product_path(cart_product.product) do %>
-          <%= attachment_image_tag cart_product.product, :image, :fill, 50, 40, fallback: 'no_image.png', size: '50x40' %>
+          <%= attachment_image_tag cart_product.product, :image, fallback: 'no_image.png', size: '50x40' %>
           <%= cart_product.product.name %>
         <% end %>
       </td>

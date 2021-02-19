@@ -5,7 +5,7 @@
       <h2>商品詳細</h2>
       <div class="d-flex justify-content-start">
         <div class="product-img mr-5">
-          <%= attachment_image_tag @product, :image, :fill, 200, 150, fallback: 'no_image.png', size: '200x150' %>
+          <%= attachment_image_tag @product, :image,　fallback: 'no_image.png', size: '200x150' %>
         </div>
         <div class="product-detail">
           <p>商品名　<%= @product.name %></p>

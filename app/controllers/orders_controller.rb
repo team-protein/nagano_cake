@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = current_customer.orders.new(payment_method: params[:payment_method])
-    # お届け先：ご自身の住所
+    # お届け先：ご自身の住所 
     if params[:shipping_to] == "0"
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
       @order.address = params[:address]
       @order.dear = params[:dear]
     end
+    # 配送料の設定
     @order.shipping_cost = 800
     @order.total_price = current_customer.cart_products.sum{|cart_product|cart_product.product.price * 1.1 * cart_product.quantity} + @order.shipping_cost
     @ordered_products_sum = @order.total_price - @order.shipping_cost
@@ -39,8 +40,13 @@ class OrdersController < ApplicationController
     if @order.invalid?
       flash.now[:alert] = "正しい住所を入力してください"
       @addresses = current_customer.addresses.to_a.map {|address| ["〒#{address.postcode} #{address.address} #{address.dear}", address.id]}
-      render :new 
+      render :new
     end
+  end
+  
+  def redirect
+    flash.now[:alert] = "最初から入力してください"
+    redirect_to  new_order_path
   end
 
   def create
@@ -51,7 +57,7 @@ class OrdersController < ApplicationController
         ordered_product = @order.ordered_products.new
         ordered_product.product_id = cart_product.product.id
         ordered_product.quantity = cart_product.quantity
-        ordered_product.tax_included_price = cart_product.product.price * 1.1 
+        ordered_product.tax_included_price = cart_product.product.price * 1.1
         ordered_product.save
       end
       current_customer.addresses.create(postcode: session[:postcode], address: session[:address], dear: session[:dear])
@@ -75,6 +81,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @ordered_products_sum = @order.total_price - @order.shipping_cost
+
   end
 
 end

@@ -2,13 +2,13 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
 
-      <div class="d-flex justify-content-between">
-        <h2>ショッピングカート</h2>
+      <h2>ショッピングカート</h2>
+      <div class="d-flex justify-content-end">
         <%= link_to 'カートを空にする', destroy_all_cart_products_path, method: :delete, data: { confirm: '本当にすべて削除しますか？' }, remote: true, class: 'btn btn-danger' %>
       </div>
 
       <div id="cart_index">
-        <%= render 'index', cart_products: @cart_products, total_price: @total_price %>
+        <%= render 'cart_products/index', cart_products: @cart_products, total_price: @total_price %>
       </div>
 
       <div class="mt-5">

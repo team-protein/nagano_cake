@@ -13,15 +13,18 @@
       %nav.navbar.navbar-expand-lg.navbar-light.bg-light
         %a.navbar-brand{href: "/"}
           %span ながのCAKE
-        - if admin_signed_in? && request.fullpath.include?("admin")
-          = render "layouts/admin_signed_in_nav"
-        - if admin_signed_in? == false && request.fullpath.include?("admin")
-          = render "layouts/before_signed_in_nav"
-        - if customer_signed_in? && request.fullpath.exclude?("admin")
-          = render "layouts/signed_in_nav"
-        - if customer_signed_in? == false && request.fullpath.exclude?("admin")
-          = render "layouts/before_signed_in_nav"
-
+        %button{class: "navbar-toggler", type: "button", "data-toggle": "collapse", "data-target": "#navbarNavDropdown", "aria-controls": "navbarNavDropdown", "aria-expanded": "false", "aria-label": "Toggle navigation"}
+          %span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+          - if admin_signed_in? && request.fullpath.include?("admin")
+            = render "layouts/admin_signed_in_nav"
+          - if admin_signed_in? == false && request.fullpath.include?("admin")
+            = render "layouts/before_signed_in_nav"
+          - if customer_signed_in? && request.fullpath.exclude?("admin")
+            = render "layouts/signed_in_nav"
+          - if customer_signed_in? == false && request.fullpath.exclude?("admin")
+            = render "layouts/before_signed_in_nav"
+         
     %main
       - flash.each do |key, value|
         - if key == 'notice'
@@ -32,9 +35,9 @@
           %p.alert.alert-danger
             = value
             %button.close{"type" => "button", "data-dismiss" => "alert"} &times;
-
+      - if content_for?(:body_attributes)
+        = yield(:body_attributes)
       .mt-5
         = yield
-
     %footer.border-top.mt-5
       = link_to '管理者ログイン', new_admin_session_path

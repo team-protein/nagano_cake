@@ -3,7 +3,7 @@
 
       <div class="product-group d-flex mx-auto">
         <div class="product-img">
-          <%= attachment_image_tag @product, :image, :fill, 200, 150, fallback: 'no_image.png', size: '200x150' %>
+          <%= attachment_image_tag @product, :image, fallback: 'no_image.png', size: '200x150' %>
         </div>
         <div class="product-detail ml-2">
           <h4>
