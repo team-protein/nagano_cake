@@ -80,9 +80,45 @@ describe '④登録情報変更～退会' do
         end
       end
     end
-    
+
     describe '管理者側のテスト' do
+      let(:admin) { create(:admin) }
+      let!(:customer) { create(:customer, is_deleted: true) }
+
+      before do
+        visit new_admin_session_path
+        fill_in 'admin[email]', with: admin.email
+        fill_in 'admin[password]', with: admin.password
+        click_button 'ログイン'
+      end
+      it 'URLが正しいか' do
+        expect(current_path).to eq '/admin/orders'
+      end
+
+      context '退会済みのユーザーが「退会」になっているか' do
+        before do
+          click_link '会員一覧'
+        end
+        it 'URLが正しいか' do
+          expect(current_path).to eq '/admin/customers'
+        end
+        it '会員一覧に「退会」の表示が出ているか' do
+          expect(page).to have_content '退会'
+        end
+        it '会員名を押すと会員詳細画面に推移し、会員ステータスが「退会」になっている' do
+          click_link customer.last_name + customer.first_name
+          expect(current_path).to eq('/admin/customers/' + customer.id.to_s)
+          expect(page).to have_content '退会'
+        end
+        it 'ログアウト後の遷移先は admin/sing_in であるか' do
+          click_link 'ログアウト'
+          expect(current_path).to eq('/admin/sign_in')
+        end
+      end
     end
+  end
+
+  describe '住所変更のテスト' do
 
   end
 end
