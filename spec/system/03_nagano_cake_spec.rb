@@ -60,17 +60,17 @@ describe '③製作～発送' do
           expect(page).to have_select(id="status", selected: '入金確認')
           expect(page).to have_select(id="making_status", selected: '製作待ち')
         end
-        it '製作ステータスを1つ「製作中」にする' do
+        it '製作ステータスの更新は反映されるか' do
           select "製作中", from: "making_status"
           find('#making-status-btn').click
           expect(page).to have_select(id="status", selected: '製作中')
         end
-        it '製作ステータスをすべて「製作完了」にする' do
+        it '製作ステータスがすべて「製作完了」になると注文ステータスが「発送準備中」になるか' do
           select "製作完了", from: "making_status"
           find('#making-status-btn').click
           expect(page).to have_select(id="status", selected: '発送準備中')
         end
-        it '注文ステータスを「発送済み」にする' do
+        it '注文ステータスの更新は反映されるか' do
           select "製作完了", from: "making_status"
           find('#making-status-btn').click
           select "発送完了", from: "status"
@@ -98,6 +98,8 @@ describe '③製作～発送' do
     let!(:orderd_product) { create(:ordered_product, order_id: order.id, product_id: product.id) }
 
     before do
+      # 以下の記述でもテスト通るが、
+      # 記述が多いためlet(:order)のorder.status: 'shipping_complete'で省略
       # visit new_admin_session_path
       # fill_in 'admin[email]', with: admin.email
       # fill_in 'admin[password]', with: admin.password
