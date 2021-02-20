@@ -4,5 +4,6 @@ FactoryBot.define do
     description { Faker::Lorem.characters(number:50) }
     price { rand(500..1000) }
     is_active { "true" }
+    genre
   end
 end
