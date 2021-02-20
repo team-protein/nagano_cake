@@ -12,8 +12,8 @@
           <tr><th>氏名</th><td><%= f.text_field :last_name, placeholder: "(姓)" %></td><td><%= f.text_field :first_name, placeholder: "(名)" %></td></tr>
           <tr><th>フリガナ</th><td><%= f.text_field :last_name_kana, placeholder: "(セイ)" %></td><td><%= f.text_field :first_name_kana, placeholder: "(メイ)" %></td></tr>
           <tr><th>メールアドレス</th><td><%= f.text_field :email %></td></tr>
-          <tr><th>郵便番号(ハイフンなし)</th><td><%= f.text_field :postcode %></td></tr>
-          <tr><th>住所</th><td colspan="2"><%= f.text_field :address, size: 50 %></td></tr>
+          <tr><th>郵便番号(ハイフンなし)</th><td><%= f.text_field :postcode, id: "postcode-form" %></td></tr>
+          <tr><th>住所</th><td colspan="2"><%= f.text_field :address, size: 50, id: "address-form" %></td></tr>
           <tr><th>電話番号</th><td><%= f.text_field :phone_number %></td></tr>
           <tr><th>パスワード(6文字以上)</th><td><%= f.password_field :password %></td></tr>
           <tr><th>パスワード(6文字以上)</th><td><%= f.password_field :password_confirmation %></td></tr>

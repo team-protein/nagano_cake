@@ -4,7 +4,7 @@
       <h2 class="mb-4" style="text-align: center">マイページ</h2>
       <div class="box mb-4">
         <h4>登録情報</h4>
-        <%= link_to "編集する", edit_customers_path, {class: "btn btn-success px-3 py-1 ml-5"} %>
+        <%= link_to "編集する", edit_customers_path, {class: "btn btn-success px-3 py-1 ml-5", data: {"turbolinks" => false}} %>
       </div>
       <table class="table-bordered" style="width: 100%">
         <tr><th style="width: 25%", class="py-2 table-secondary">氏名</th><td style="width: 75%"><%= "#{current_customer.last_name} #{current_customer.first_name}" %></td></tr>
