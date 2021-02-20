@@ -2,7 +2,6 @@ class OrderedProduct < ApplicationRecord
   belongs_to :product
   belongs_to :order
 
-
   enum making_status: {
     impossible: 0, #製作不可
     waiting: 1, #製作待ち
