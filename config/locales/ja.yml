@@ -20,8 +20,6 @@ ja:
     models:
       customer: ユーザー
       address: アドレス
-      genre: ジャンル
-      product: 商品
     attributes:
       customer:
         first_name: 名前（名）
@@ -37,13 +35,6 @@ ja:
         postcode: 郵便番号
         address: 住所
         dear: 宛名
-      genre:
-        name: ジャンル名
-      product:
-        genre: ジャンル名
-        name: 商品名
-        description: 商品説明
-        price: 税抜価格
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>

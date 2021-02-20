@@ -1,19 +1,18 @@
 class OrdersController < ApplicationController
 
   def new
-    if current_customer.cart_products.blank?
+    unless current_customer.cart_products.present?
       flash.now[:alert] = "商品をカートに入れてください"
       @cart_products = current_customer.cart_products
       @total_price = @cart_products.sum{|cart_product|cart_product.product.price * 1.1 * cart_product.quantity}
       render "cart_products/index"
     end
-    # 登録済み配送先の選択肢を作成
-    @addresses = current_customer.addresses.map {|address| ["〒#{address.postcode} #{address.address} #{address.dear}", address.id]}
+    @addresses = current_customer.addresses.to_a.map {|address| ["〒#{address.postcode} #{address.address} #{address.dear}", address.id]}
   end
 
   def confirm
     @order = current_customer.orders.new(payment_method: params[:payment_method])
-    # お届け先：ご自身の住所
+    # お届け先：ご自身の住所 
     if params[:shipping_to] == "0"
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
@@ -44,7 +43,7 @@ class OrdersController < ApplicationController
       render :new
     end
   end
-
+  
   def redirect
     flash.now[:alert] = "最初から入力してください"
     redirect_to  new_order_path
