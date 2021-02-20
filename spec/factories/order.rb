@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :order do
-    postcode { "0000000" }
+    postcode { Faker::Number.number(digits: 7) }
     address { Faker::Address.full_address }
     dear { Faker::Name.name }
     total_price { rand(1000..9999) }
