@@ -27,4 +27,17 @@ RSpec.describe Order, "モデルに関するテスト", type: :model do
       expect(order.errors[:dear]).to include("を入力してください")
     end
   end
+  
+  describe 'アソシエーションのテスト' do
+    context 'Customerモデルとの関係' do
+      it 'N:1になっている' do
+        expect(Order.reflect_on_association(:customer).macro).to eq :belongs_to
+      end
+    end
+    context 'Productモデルとの関係' do
+      it '1:Nになっている' do
+        expect(Order.reflect_on_association(:ordered_products).macro).to eq :has_many
+      end
+    end
+  end
 end
