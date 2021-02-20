@@ -82,7 +82,6 @@ describe '④登録情報変更～退会' do
     end
 
     describe '管理者側のテスト' do
-      let(:admin) { create(:admin) }
       let!(:customer) { create(:customer, is_deleted: true) }
 
       before do
@@ -119,6 +118,61 @@ describe '④登録情報変更～退会' do
   end
 
   describe '住所変更のテスト' do
-
+    it '会員が変更した住所が管理者側を管理者側から確認する' do
+      # 変更前の会員情報
+      old_last_name = customer.last_name
+      old_first_name = customer.first_name
+      old_last_name_kana = customer.last_name_kana
+      old_first_name_kana = customer.first_name_kana
+      old_postcode = customer.postcode
+      old_address = customer.address
+      old_email = customer.email
+      # 会員ページにログインして会員情報を変更
+      visit new_customer_session_path
+      fill_in 'customer[email]', with: customer.email
+      fill_in 'customer[password]', with: customer.password
+      click_button 'ログイン'
+      visit edit_customers_path
+      gimei = Gimei::Name.new
+      fill_in 'customer[last_name]', with: gimei.last.kanji
+      fill_in 'customer[first_name]', with: gimei.first.kanji
+      fill_in 'customer[last_name_kana]', with: gimei.last.katakana
+      fill_in 'customer[first_name_kana]', with: gimei.first.katakana
+      fill_in 'customer[postcode]', with: Faker::Number.number(digits: 7)
+      fill_in 'customer[address]', with: Gimei.address.kanji
+      fill_in 'customer[email]', with: Faker::Internet.email
+      click_button '編集内容を保存'
+      # 変更後の会員情報
+      new_last_name = customer.reload.last_name
+      new_first_name = customer.reload.first_name
+      new_last_name_kana = customer.reload.last_name_kana
+      new_first_name_kana = customer.reload.first_name_kana
+      new_postcode = customer.reload.postcode
+      new_address = customer.reload.address
+      new_email = customer.reload.email
+      click_link 'ログアウト'
+      # 管理者側で会員情報の変更内容を確認
+      visit new_admin_session_path
+      fill_in 'admin[email]', with: admin.email
+      fill_in 'admin[password]', with: admin.password
+      click_button 'ログイン'
+      visit admin_customer_path(customer)
+      # 変更前の会員情報が記載されていないことを確認
+      expect(page).not_to have_content old_last_name
+      expect(page).not_to have_content old_first_name
+      expect(page).not_to have_content old_last_name_kana
+      expect(page).not_to have_content old_first_name_kana
+      expect(page).not_to have_content old_postcode
+      expect(page).not_to have_content old_address
+      expect(page).not_to have_content old_email
+      # 変更後の会員情報が記載されていることを確認
+      expect(page).to have_content new_last_name
+      expect(page).to have_content new_first_name
+      expect(page).to have_content new_last_name_kana
+      expect(page).to have_content new_first_name_kana
+      expect(page).to have_content new_postcode
+      expect(page).to have_content new_address
+      expect(page).to have_content new_email
+    end
   end
 end
