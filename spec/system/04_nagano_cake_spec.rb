@@ -118,7 +118,7 @@ describe '④登録情報変更～退会' do
   end
 
   describe '住所変更のテスト' do
-    it '会員が変更した住所が管理者側を管理者側から確認する' do
+    it '会員が変更した住所を管理者側から確認する' do
       # 会員ページにログインして会員情報を変更
       visit new_customer_session_path
       fill_in 'customer[email]', with: customer.email
