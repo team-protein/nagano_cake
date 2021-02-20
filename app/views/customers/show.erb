@@ -14,14 +14,14 @@
         <tr><th style="width: 25%", class="py-2 table-secondary">電話番号</th><td style="width: 75%"><%= "#{current_customer.phone_number}" %></td></tr>
         <tr><th style="width: 25%", class="py-2 table-secondary">メールアドレス</th><td style="width: 75%"><%= "#{current_customer.email}" %></td></tr>
       </table>
-      
+
       <div class="box mt-5 mb-4 ">
         <h4>配送先</h4>
         <%= link_to "一覧を見る", addresses_path, {class: "btn btn-primary px-3 py-1 ml-5"}  %>
       </div>
       <div class="box mb-5">
         <h4>注文履歴</h4>
-        <%= link_to "一覧を見る", orders_path, {class: "btn btn-primary px-3 py-1 ml-4"} %>
+        <%= link_to "一覧を見る", orders_path, {class: "btn btn-primary px-3 py-1 ml-4", id: 'orders-link'} %>
       </div>
     </div>
   </div>
