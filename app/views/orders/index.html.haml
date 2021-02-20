@@ -1,6 +1,6 @@
 .container
   %h2 注文履歴一覧
-  %table.table.table-bordered
+  %table.table.table-bordered.table-sm
     %thead
       %tr
         %th 注文日
@@ -28,5 +28,6 @@
             #{order.total_price.to_s(:delimited, delimiter: ',')}円
           %td.align-middle
             = order.status_i18n
-          %td.align-middle.order_show_path.align-middle
-            = link_to "表示する", order_path(order), class: "btn btn-primary"
+          %td.align-middle
+            .mx-auto.order-path
+              = link_to "表示する", order_path(order), class: "btn btn-primary"
