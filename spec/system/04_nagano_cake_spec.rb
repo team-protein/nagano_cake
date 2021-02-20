@@ -119,14 +119,6 @@ describe '④登録情報変更～退会' do
 
   describe '住所変更のテスト' do
     it '会員が変更した住所が管理者側を管理者側から確認する' do
-      # 変更前の会員情報
-      old_last_name = customer.last_name
-      old_first_name = customer.first_name
-      old_last_name_kana = customer.last_name_kana
-      old_first_name_kana = customer.first_name_kana
-      old_postcode = customer.postcode
-      old_address = customer.address
-      old_email = customer.email
       # 会員ページにログインして会員情報を変更
       visit new_customer_session_path
       fill_in 'customer[email]', with: customer.email
@@ -142,14 +134,6 @@ describe '④登録情報変更～退会' do
       fill_in 'customer[address]', with: Gimei.address.kanji
       fill_in 'customer[email]', with: Faker::Internet.email
       click_button '編集内容を保存'
-      # 変更後の会員情報
-      new_last_name = customer.reload.last_name
-      new_first_name = customer.reload.first_name
-      new_last_name_kana = customer.reload.last_name_kana
-      new_first_name_kana = customer.reload.first_name_kana
-      new_postcode = customer.reload.postcode
-      new_address = customer.reload.address
-      new_email = customer.reload.email
       click_link 'ログアウト'
       # 管理者側で会員情報の変更内容を確認
       visit new_admin_session_path
@@ -158,21 +142,21 @@ describe '④登録情報変更～退会' do
       click_button 'ログイン'
       visit admin_customer_path(customer)
       # 変更前の会員情報が記載されていないことを確認
-      expect(page).not_to have_content old_last_name
-      expect(page).not_to have_content old_first_name
-      expect(page).not_to have_content old_last_name_kana
-      expect(page).not_to have_content old_first_name_kana
-      expect(page).not_to have_content old_postcode
-      expect(page).not_to have_content old_address
-      expect(page).not_to have_content old_email
+      expect(page).not_to have_content customer.last_name
+      expect(page).not_to have_content customer.first_name
+      expect(page).not_to have_content customer.last_name_kana
+      expect(page).not_to have_content customer.first_name_kana
+      expect(page).not_to have_content customer.postcode
+      expect(page).not_to have_content customer.address
+      expect(page).not_to have_content customer.email
       # 変更後の会員情報が記載されていることを確認
-      expect(page).to have_content new_last_name
-      expect(page).to have_content new_first_name
-      expect(page).to have_content new_last_name_kana
-      expect(page).to have_content new_first_name_kana
-      expect(page).to have_content new_postcode
-      expect(page).to have_content new_address
-      expect(page).to have_content new_email
+      expect(page).to have_content customer.reload.last_name
+      expect(page).to have_content customer.reload.first_name
+      expect(page).to have_content customer.reload.last_name_kana
+      expect(page).to have_content customer.reload.first_name_kana
+      expect(page).to have_content customer.reload.postcode
+      expect(page).to have_content customer.reload.address
+      expect(page).to have_content customer.reload.email
     end
   end
 end
