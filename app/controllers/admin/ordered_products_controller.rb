@@ -11,7 +11,7 @@ class Admin::OrderedProductsController < ApplicationController
       @order.status = "shipping_preparing"
     end
     @order.save
-      redirect_to admin_order_path(@order)
+    redirect_to admin_order_path(@order)
   end
   
 end

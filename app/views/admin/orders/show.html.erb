@@ -28,7 +28,7 @@
             <th style="width:25%">注文ステータス</th>
             <td style="width:75%">
               <%= form_with(url: admin_order_path(@order), method: :patch, local: true) do |f| %>
-              <%= f.select :status, Order.statuses_i18n.keys.map{|k| [I18n.t("enums.order.status.#{k}"), k]}, {selected: @order.status} %>
+              <%= f.select :status, Order.statuses.keys.map{|k| [I18n.t("enums.order.status.#{k}"), k]}, {selected: @order.status} %>
               <%= f.submit "更新", class: "btn btn-success" %>
               <% end %>
             </td>
@@ -60,7 +60,7 @@
             <td><%= tax_excluded_price(o_product.tax_included_price * o_product.quantity) %>円</td>
             <%= form_with(url: admin_order_ordered_product_path(@order.id, o_product.id), method: :patch, local: true) do |f| %>
             <td>
-               <%= f.select :making_status, OrderedProduct.making_statuses_i18n.keys.map{|k| [I18n.t("enums.ordered_product.making_status.#{k}"), k]}, {selected: o_product.making_status} %>
+               <%= f.select :making_status, OrderedProduct.making_statuses.keys.map{|k| [I18n.t("enums.ordered_product.making_status.#{k}"), k]}, {selected: o_product.making_status} %>
             </td>
             <td> <%= f.submit "更新", class: "btn btn-success" %></td>
             <% end %>
