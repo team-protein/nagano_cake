@@ -1,0 +1,23 @@
+<table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% addresses.each do |address| %>
+    <tr>
+      <td><%= address.postcode %></td>
+      <td><%= address.address %></td>
+      <td><%= address.dear %></td>
+      <td>
+        <%= link_to "編集する", edit_address_path(address.id), {class: "btn btn-success btn-edit btn-address", data: {"turbolinks" => false}} %>
+        <%= button_to "削除する", address_path(address.id), {method: :delete, class: "btn btn-danger ml-3", remote: true}  %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
