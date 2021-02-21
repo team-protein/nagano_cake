@@ -14,9 +14,6 @@ $(function() {
   });
 
   var products = $(".products_name").val();
-  
-  // var products = products_a.join();
-  // var products = ["apple", "ant", "testa", "aaaaaaan"]
   $('#suggest').autocomplete({
     source: products.split(","),
     delay: 300, // 入力してからサジェストが動くまでの時間(ms)
