@@ -25,12 +25,6 @@ body {
   width: 120px;
 }
 
-.admin-search-form {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 5px;
-}
-
 footer {
   height: 100px;
 }
@@ -51,11 +45,19 @@ a.text-dark:hover {
   width: 370px;
 }
 
+#cart_product_quantity {
+  width: 50px;
+  height: 27px;
+  &.count-select {
+    width: 100px;
+  }
+}
+
 @media screen and (max-width:991px) {
   .search-form {
     width: 350px;
   }
-  
+
   .search-text {
   width: 100%;
   }

@@ -83,7 +83,7 @@ describe 'ログイン後のテスト：登録～注文' do
     context '個数を選択し、カートに入れるボタンを押下したとき' do
       it 'カート画面に遷移する' do
         visit product_path(product.id)
-        fill_in 'cart_product[quantity]', with: rand(1..99)
+        select rand(1..10), from: 'cart_product_quantity'
         click_button 'カートに入れる'
         expect(current_path).to eq '/cart_products'
       end
@@ -107,15 +107,15 @@ describe 'ログイン後のテスト：登録～注文' do
       expect(current_path).to eq '/products'
     end
     it '商品の個数を変更し、更新ボタンを押下すると表示が正しく更新される' do
-      new_quantitiy = rand(1..99)
-      fill_in 'cart_product[quantity]', with: new_quantitiy
+      new_quantity = rand(1..10)
+      select new_quantity, from: 'cart_product_quantity'
       click_on '変更'
       using_wait_time 5 do
         visit current_path
-        expect(page).to have_field 'cart_product[quantity]', with: new_quantitiy
+        expect(page).to have_select(id="cart_product_quantity", selected: new_quantity.to_s)
         tax_included_price = product.price * 1.1
         tax_included_price = tax_included_price.floor
-        subtotal_price = tax_included_price * new_quantitiy
+        subtotal_price = tax_included_price * new_quantity
         expect(page).to have_content subtotal_price.to_s(:delimited, delimiter: ',')
       end
     end

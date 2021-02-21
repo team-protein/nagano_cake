@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   validates :price, presence: true
   belongs_to :genre
   has_many :cart_products, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   attachment :image
 
   # 管理者側検索メソッド
@@ -22,5 +23,10 @@ class Product < ApplicationRecord
 
   def self.name_and_genre_search_for(content, genre)
 	  Product.where(is_active: true).where("name LIKE? AND genre_id LIKE?", "%#{content}%", "#{genre}")
+  end
+
+  # ブックマーク済みか確認する
+  def bookmarked_by?(customer)
+    bookmarks.where(customer_id: customer.id).exists?
   end
 end
