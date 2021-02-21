@@ -5,10 +5,15 @@
         <div class="product-img">
           <%= attachment_image_tag @product, :image, fallback: 'no_image.png', size: '200x150' %>
         </div>
-        <div class="product-detail ml-2">
-          <h4>
-            <%= @product.name %>
-          </h4>
+        <div class="product-detail ml-5">
+          <div class="d-flex justify-content-between">
+            <h4>
+              <%= @product.name %>
+            </h4>
+            <div id="bookmark-info-<%= @product.id %>">
+              <%= render 'bookmarks/bookmark_btn', product: @product %>
+            </div>
+          </div>
           <p>
             <%= @product.description %>
           </p>

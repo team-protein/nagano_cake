@@ -251,7 +251,9 @@ describe '登録情報変更～退会のテスト' do
         expect(page).to have_content "東京都渋谷区代々木神園町0-0"
         expect(page).to have_content "令和道子"
       end
-      
+    end
+  end
+end
 describe '④登録情報変更～退会' do
   let(:admin) { create(:admin) }
   let(:customer) { create(:customer) }

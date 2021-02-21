@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h2>ブックマーク一覧（全<%= current_customer.bookmarks.count %>件）</h2>
+      <div class="products-container d-flex mx-auto">
+      <% @products.each do |product| %>
+        <div class="one-product">
+          <%= link_to product_path(product) do %>
+            <div class="product-img">
+              <%= attachment_image_tag product, :image, fallback: 'no_image.png', size: '200x150' %>
+            </div>
+            <p class="product-name">
+              <%= product.name %>
+            </p>
+          <% end %>
+          <div class="d-flex">
+            <p><%= tax_included_price(product.price) %>円</p>
+            <span id="bookmark-info-<%= product.id %>" class="ml-3">
+              <%= render 'bookmarks/bookmark_btn', product: product %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <%= paginate @products %>
+      </div>
+
+    </div>
+  </div>
+</div>
