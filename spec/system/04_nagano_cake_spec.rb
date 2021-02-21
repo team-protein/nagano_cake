@@ -253,7 +253,7 @@ describe '登録情報変更～退会のテスト' do
       end
     end
   end
-end
+end 
 describe '④登録情報変更～退会' do
   let(:admin) { create(:admin) }
   let(:customer) { create(:customer) }

@@ -18,6 +18,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery.jpostal
+//= require jquery-ui/widgets/autocomplete
 //= require_tree .
 
 
