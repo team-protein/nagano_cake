@@ -22,8 +22,12 @@
       </td>
       <td>
         <%= form_with model: cart_product do |f| %>
-          <%= f.number_field :quantity, min:1 %>
-          <%= f.submit '変更', class: 'btn btn-success' %>
+          <% if cart_product.quantity <= 10 %>
+            <%= f.select :quantity, ((1..10).to_a).map{|num| [num, num]}, { selected: cart_product.quantity } %>
+          <% else %>
+            <%= f.select :quantity, ((1..cart_product.quantity).to_a).map{|num| [num, num]}, { selected: cart_product.quantity } %>
+          <% end %>
+          <%= f.submit '変更', class: 'btn btn-sm btn-success ml-3' %>
         <% end %>
         <div class="update_info_<%= cart_product.id %>"></div>
       </td>

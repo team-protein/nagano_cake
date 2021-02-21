@@ -45,6 +45,14 @@ a.text-dark:hover {
   width: 370px;
 }
 
+#cart_product_quantity {
+  width: 50px;
+  height: 27px;
+  &.count-select {
+    width: 100px;
+  }
+}
+
 @media screen and (max-width:991px) {
   .search-form {
     width: 350px;
