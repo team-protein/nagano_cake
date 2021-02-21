@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   belongs_to :genre
   has_many :cart_products, dependent: :destroy
   has_many :ordered_products, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+
   attachment :image
 
   # 管理者側検索メソッド
@@ -52,5 +54,10 @@ class Product < ApplicationRecord
     when "3"
       all
     end
+  end
+
+  # ブックマーク済みか確認する
+  def bookmarked_by?(customer)
+    bookmarks.where(customer_id: customer.id).exists?
   end
 end

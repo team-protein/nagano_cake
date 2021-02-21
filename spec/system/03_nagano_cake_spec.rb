@@ -26,9 +26,7 @@ describe '③製作～発送' do
 
     describe '注文履歴の確認' do
       before do
-        orders_link = find_all('a')[3].native.inner_text
-        orders_link = orders_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link orders_link
+        click_link '注文履歴一覧'
       end
       context '表示内容の確認' do
         it 'URLが正しいか' do

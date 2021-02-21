@@ -10,12 +10,18 @@ Rails.application.routes.draw do
   root "homes#top"
   get "about" => "homes#about"
 
-  resource :customers, only: [:edit, :update]
+  resource :customers, only: [:edit, :update] do
+    member do
+      get :bookmarks
+    end
+  end
   get "customers/my_page" => "customers#show"
   get "customers/delete_confirm" => "customers#delete_confirm"
   patch "customers/withdraw" => "customers#withdraw"
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    resource :bookmarks, only: [:create, :destroy]
+  end
 
   resources :cart_products, only: [:index, :update, :destroy, :create] do
     collection do

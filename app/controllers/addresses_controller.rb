@@ -2,6 +2,7 @@ class AddressesController < ApplicationController
   before_action :authenticate_customer!
   def index
     @address = Address.new
+    @addresses = current_customer.addresses
   end
   
   def show
@@ -10,10 +11,11 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
-    if @address.save
-      redirect_to addresses_path
-    else
-      render 'addresses/index'
+    @address.save
+    @addresses = current_customer.addresses
+    respond_to do |format|
+      format.html {redirect_to addresses_path}
+      format.js
     end
   end
   
@@ -33,7 +35,11 @@ class AddressesController < ApplicationController
   def destroy
     address = Address.find(params[:id])
     address.destroy
-    redirect_to addresses_path
+    @addresses = current_customer.addresses
+    respond_to do |format|
+      format.html {redirect_to addresses_path}
+      format.js
+    end
   end
   
   private

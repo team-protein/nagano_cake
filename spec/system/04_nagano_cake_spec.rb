@@ -94,8 +94,8 @@ describe "④登録情報変更〜退会1~15のテスト" do
       find_all('.product_image')[product_num].click
       selected_product = Product.find_by(name: "テストプロダクト#{product_num}")
       expect(current_path). to eq "/products/#{selected_product.id}"
-      quantity = rand(1..100)
-      fill_in 'cart_product_quantity', with: quantity
+      quantity = rand(1..10)
+      select quantity, from: 'cart_product_quantity'
       click_on 'カートに入れる'
       kakaku = (selected_product.price * 1.1).floor
       total_kakaku = kakaku * quantity
@@ -113,8 +113,8 @@ describe "④登録情報変更〜退会1~15のテスト" do
       find_all('.product_image')[product_num].click
       selected_product = Product.find_by(name: "テストプロダクト#{product_num}")
       expect(current_path). to eq "/products/#{selected_product.id}"
-      quantity = rand(1..100)
-      fill_in 'cart_product_quantity', with: quantity
+      quantity = rand(1..10)
+      select quantity, from: 'cart_product_quantity'
       click_on 'カートに入れる'
       click_on '情報入力に進む'
       expect(current_path).to eq "/orders/new"
@@ -140,8 +140,8 @@ describe "④登録情報変更〜退会1~15のテスト" do
       find_all('.product_image')[product_num].click
       selected_product = Product.find_by(name: "テストプロダクト#{product_num}")
       expect(current_path). to eq "/products/#{selected_product.id}"
-      quantity = rand(1..100)
-      fill_in 'cart_product_quantity', with: quantity
+      quantity = rand(1..10)
+      select quantity, from: 'cart_product_quantity'
       click_on 'カートに入れる'
       click_on '情報入力に進む'
       expect(current_path).to eq "/orders/new"
