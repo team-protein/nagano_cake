@@ -36,6 +36,10 @@ class CartProductsController < ApplicationController
     if @cart_product.update(cart_product_params)
       @cart_products = CartProduct.where(customer_id: current_customer.id)
       @total_price = @cart_products.sum{|cart_product|cart_product.product.price * 1.1 * cart_product.quantity}
+      respond_to do |format|
+        format.html { redirect_to cart_products_path }
+        format.js
+      end
     else
       render 'update_error'
     end
