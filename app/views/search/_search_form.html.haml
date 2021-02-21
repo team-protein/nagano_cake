@@ -1,7 +1,11 @@
 = form_with url: products_path, method: :get, local: :true, class: "search-form" do |f|
   .input-group-append.my-3
-    = f.collection_select :genre_id, Genre.all, :id, :name, { selected: params[:genre_id], prompt: 'ジャンル', include_blank: 'すべて' }, class: "btn btn-outline-secondary"
-    = f.search_field :word, value: params[:word], placeholder: '商品を検索', class: "search-text"
+    = f.collection_select :genre_id, Genre.all, :id, :name, { selected: params[:genre_id],include_blank: 'ジャンル' }, class: "btn btn-outline-secondary"
+    = f.search_field :words, value: params[:words], placeholder: '商品を検索', class: "search-text", id: "suggest"
     = f.hidden_field :sort, value: params[:sort]
+    = f.hidden_field :price, value: params[:price]
+    = f.hidden_field :min_price, value: params[:min_price]
+    = f.hidden_field :max_price, value: params[:max_price]
+    = f.hidden_field :is_active, value: params[:is_active]
     = f.submit "\uF002", class: 'search-btn btn btn-sm btn-outline-primary'
-    
+

@@ -13,16 +13,8 @@ class Product < ApplicationRecord
 	end
 
   # 会員側検索メソッド
-  def self.name_search_for(content)
-	  Product.where(is_active: true).where("name LIKE?", "%#{content}%")
-  end
-
   def self.genre_search_for(genre)
-	  Product.where(is_active: true).where("genre_id LIKE?", "#{genre}")
-  end
-
-  def self.name_and_genre_search_for(content, genre)
-	  Product.where(is_active: true).where("name LIKE? AND genre_id LIKE?", "%#{content}%", "#{genre}")
+	  where("genre_id LIKE?", "#{genre}")
   end
   
   def self.sort_for(sort)
@@ -36,8 +28,7 @@ class Product < ApplicationRecord
     when "4"
       order(price: "DESC")
     when "5"
-      products = self.includes(:ordered_products).sort_by {|product| product.ordered_products.size}.reverse
-      return Kaminari.paginate_array(products)
+      includes(:ordered_products).sort_by {|product| product.ordered_products.size}.reverse
     end
   end
   def self.price_search_for(price)
@@ -53,7 +44,7 @@ class Product < ApplicationRecord
     end
   end
   def self.is_active_search_for(is_active)
-    case price
+    case is_active
     when "1"
       where(is_active: true)
     when "2"

@@ -1,13 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 mx-auto">
-      <% if params[:genre_id].present? %>
-        <h2><%= @genre.name %>一覧（全<%= @products_count %>件）</h2>
-      <% else %>
-        <h2>商品一覧（全<%= @products_count %>件）</h2>
-      <% end %>
-      <%= render "search/product_search_form" %>
-      <%= render "search/sort_form" %>
+      <div class="d-flex mb-3">
+        <% if params[:genre_id].present? %>
+          <h2><%= @genre.name %>一覧（全<%= @products_count %>件）</h2>
+        <% else %>
+          <h2>商品一覧（全<%= @products_count %>件）</h2>
+        <% end %>
+        <%= render "search/sort_form" %>
+        <button id="down-button"class="btn btn-outline-primary dropdown-toggle active-button">詳細検索</button>
+        <span class="dropup">
+          <button id="up-button"class="btn btn-outline-primary dropdown-toggle">詳細検索</button>
+        </span>
+        <%= render "search/product_search_form" %>
+      </div>
       <div class="products-container d-flex mx-auto">
       <% @products.each do |product| %>
         <div class="one-product">

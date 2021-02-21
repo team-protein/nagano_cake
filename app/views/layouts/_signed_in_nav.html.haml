@@ -3,7 +3,7 @@
   #navbarNavDropdown.collapse.navbar-collapse
     %ul.navbar-nav
       %li= link_to "マイページ", customers_my_page_path, class: "nav-link text-dark btn btn-outline-dark mr-3"
-      %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-3"
+      %li= link_to "商品一覧", products_path, class: "nav-link text-dark btn btn-outline-dark mr-3", data: {"turbolinks" => false}
       %li= link_to "カート", cart_products_path , class: "nav-link text-dark btn btn-outline-dark mr-3"
       %li= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-dark mr-5"
   = render "search/search_form"

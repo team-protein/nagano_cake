@@ -1,8 +1,13 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
-    if params[:word].present?
-      @products = @products.name_search_for(params[:word])
+    if params[:words].present?
+      words = params[:words].split(/[[:blank:]]+/).select(&:present?)
+      @products = Product.none
+      words.each do |word|
+        @products = @products.or(Product.where("name LIKE ?", "%#{word}%"))
+      end
+    else
+      @products = Product.all
     end
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
@@ -27,9 +32,10 @@ class ProductsController < ApplicationController
     else
       @products = @products.order(created_at: "DESC")
     end
-    @products = @products.page(params[:page]).per(8)
     @products_count = @products.count
-    
+    @products = Kaminari.paginate_array(@products).page(params[:page]).per(8)
+
+
   end
 
   def show

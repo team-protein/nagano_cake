@@ -23,3 +23,34 @@
   margin-top: 5px;
   margin-bottom: 0;
 }
+
+.product-search-form {
+  display: none;
+  position: absolute;
+  left: 485px;
+  top: 45px;
+  background-color: white;
+}
+
+.active {
+  display: block;
+}
+
+#sort {
+  height: 46px;
+}
+
+#price {
+  width: 100%;
+}
+
+
+#up-button {
+  display: none;
+  height: 46px;
+}
+
+#words {
+  height: 37px;
+  width: 100%;
+}

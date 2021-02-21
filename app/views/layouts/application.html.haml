@@ -21,7 +21,7 @@
           = render "layouts/signed_in_nav"
         - if customer_signed_in? == false && request.fullpath.exclude?("admin")
           = render "layouts/before_signed_in_nav"
-         
+
     %main
       - flash.each do |key, value|
         - if key == 'notice'
@@ -38,3 +38,5 @@
         = yield
     %footer.border-top.mt-5
       = link_to '管理者ログイン', new_admin_session_path
+
+%input{name: "products_name", type: "hidden", value: Product.where(is_active: true).pluck(:name).join(","), class: "products_name" }
