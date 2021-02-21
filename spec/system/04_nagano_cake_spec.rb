@@ -12,7 +12,7 @@ describe "④登録情報変更〜退会1~15のテスト" do
     expect(page).to have_content "ログインしました"
     expect(current_path).to eq '/'
   end
-  context '会員情婦変更のテスト' do
+  context '会員情報変更のテスト' do
     it "1.マイページにて会員情報編集ボタンを押下し、会員情報編集画面に遷移する" do
     click_on 'マイページ'
     expect(current_path).to eq '/customers/my_page'
