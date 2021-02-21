@@ -1,5 +1,17 @@
 = form_with url: products_path, method: :get, local: :true, class: "search-form" do |f|
-  .input-group-append.my-3
-    = f.collection_select :genre_id, Genre.all, :id, :name, { selected: params[:genre_id], prompt: 'ジャンル', include_blank: 'すべて' }, class: "btn btn-outline-secondary"
-    = f.search_field :word, value: params[:word], placeholder: '商品を検索', class: "search-text"
-    = f.submit "\uF002", class: 'search-btn btn btn-sm btn-outline-primary'
+  .input-group-append.my-3.d-flex.flex-column
+    .field
+      = f.collection_select :genre_id, Genre.all, :id, :name, { selected: params[:genre_id], prompt: 'ジャンル', include_blank: 'すべて' }, class: "btn btn-outline-secondary"
+    .field
+      = f.label :price, "価格"
+      %br
+      = f.select :price, [["0~1000", 1], ["1000~3000", 2], ["3000~5000", 3], ["5000~10000", 4] ], { selected: params[:price], include_blank: '選択してください' }
+      = f.text_field :min_price, placeholder: "￥Min", value: params[:min_price]
+      ～
+      = f.text_field :max_price, placeholder: "￥Max", value: params[:max_price]
+    .field
+      = f.label :is_active, "販売状況"
+      = f.select :is_active, [["販売中", 1], ["販売停止中", 2], ["すべて", 3]], { selected: params[:is_active], include_blank: '選択してください' }
+    = f.hidden_field :sort, value: params[:sort]
+    = f.submit "適用する", class: 'btn btn-outline-primary'
+    

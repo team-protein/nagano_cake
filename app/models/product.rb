@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   validates :price, presence: true
   belongs_to :genre
   has_many :cart_products, dependent: :destroy
+  has_many :ordered_products, dependent: :destroy
   attachment :image
 
   # 管理者側検索メソッド
@@ -22,5 +23,43 @@ class Product < ApplicationRecord
 
   def self.name_and_genre_search_for(content, genre)
 	  Product.where(is_active: true).where("name LIKE? AND genre_id LIKE?", "%#{content}%", "#{genre}")
+  end
+  
+  def self.sort_for(sort)
+    case sort
+    when "1"
+      order(created_at: "DESC")
+    when "2"
+      order(created_at: "ASC")
+    when "3"
+      order(price: "ASC")
+    when "4"
+      order(price: "DESC")
+    when "5"
+      products = self.includes(:ordered_products).sort_by {|product| product.ordered_products.size}.reverse
+      return Kaminari.paginate_array(products)
+    end
+  end
+  def self.price_search_for(price)
+    case price
+    when "1"
+      where(price: 0..1000)
+    when "2"
+      where(price: 1000..3000)
+    when "3"
+      where(price: 3000..5000)
+    when "4"
+      where(price: 5000..10000)
+    end
+  end
+  def self.is_active_search_for(is_active)
+    case price
+    when "1"
+      where(is_active: true)
+    when "2"
+      where(is_active: false)
+    when "3"
+      all
+    end
   end
 end

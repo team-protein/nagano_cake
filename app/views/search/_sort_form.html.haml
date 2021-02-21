@@ -1,0 +1,4 @@
+= form_with url: products_path, method: :get, local: true do |f|
+  = f.select :sort, [["新しい順", 1], ["古い順", 2], ["価格の安い順", 3], ["価格の高い順", 4], ["人気順", 5]], {selected: params[:sort]}, {onchange: "this.form.submit()"}
+  = f.hidden_field :genre_id, value: params[:genre_id]
+  = f.hidden_field :price, value: params[:price]

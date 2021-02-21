@@ -7,6 +7,7 @@
         <h2>商品一覧（全<%= @products_count %>件）</h2>
       <% end %>
       <%= render "search/product_search_form" %>
+      <%= render "search/sort_form" %>
       <div class="products-container d-flex mx-auto">
       <% @products.each do |product| %>
         <div class="one-product">
