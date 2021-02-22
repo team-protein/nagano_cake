@@ -48,11 +48,11 @@ class Product < ApplicationRecord
   def self.is_active_search_for(is_active)
     case is_active
     when "1"
-      where(is_active: true)
-    when "2"
       where(is_active: false)
-    when "3"
+    when "2"
       all
+    when nil
+      where(is_active: true)
     end
   end
 
