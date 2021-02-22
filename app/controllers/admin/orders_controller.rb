@@ -5,10 +5,16 @@ class Admin::OrdersController < ApplicationController
     if params[:user_id].present?
       customer = Customer.find(params[:user_id])
       @orders = customer.orders.page(params[:page]).per(10)
-      @orders_month_sum = customer.orders.group(:created_month).sum(:total_price).to_a
+      @orders_all = customer.orders.all.order('created_at ASC')
+      order_date_sum = @orders_all.group("date(created_at)").sum(:total_price)
+      @prices = order_date_sum.values
+      @dates = order_date_sum.keys
     else
       @orders = Order.page(params[:page]).per(10)
-      @orders_month_sum = Order.group(:created_month).sum(:total_price).to_a
+      @orders_all = Order.all.order('created_at ASC')
+      order_date_sum = @orders_all.group("date(created_at)").sum(:total_price)
+      @prices = order_date_sum.values
+      @dates = order_date_sum.keys
     end
   end
 

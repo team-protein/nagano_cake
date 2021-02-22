@@ -95,5 +95,5 @@ Customer.create!(email: "test@gmail.com",
                 dear: "test",
                 total_price: rand(1000..10000),
                 shipping_cost: 800,
-                created_month: "2021,#{rand(1..12)}")
+                created_at: "2021-#{rand(1..12)}-#{rand(1..28)} 04:39:22")
 end

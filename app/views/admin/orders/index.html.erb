@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10">
       <h2>売上推移</h2>
-      <%= line_chart @orders_month_sum, width: "900px", height: "400px" %>
+      <%= render "graph" %>
       <h2 class="my-5">注文履歴一覧</h2>
       <table class="table">
         <thead>
@@ -24,7 +24,9 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @orders %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @orders %>
+      </div>
     </div>
   </div>
 </div>
