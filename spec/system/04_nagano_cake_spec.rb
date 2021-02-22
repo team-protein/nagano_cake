@@ -30,7 +30,7 @@ describe "④登録情報変更〜退会1~15のテスト" do
       fill_in 'customer_first_name_kana', with: 'テストタロウ'
       fill_in 'postcode-form', with: '1111111'
       fill_in 'address-form', with: 'テスト県テスト市テスト区テスト町'
-      fill_in 'customer_phone_number', with: '00000000000'
+      fill_in 'customer_phone_number', with: '0000000000'
       fill_in 'customer_email', with: 'test@test.com'
       click_on '編集内容を保存'
       expect(current_path).to eq '/customers/my_page'
@@ -40,7 +40,7 @@ describe "④登録情報変更〜退会1~15のテスト" do
       expect(page).to have_content "テストタロウ"
       expect(page).to have_content "1111111"
       expect(page).to have_content "テスト県テスト市テスト区テスト町"
-      expect(page).to have_content "00000000000"
+      expect(page).to have_content "0000000000"
       expect(page).to have_content "テスト田"
     end
   end
@@ -253,7 +253,7 @@ describe '登録情報変更～退会のテスト' do
       end
     end
   end
-end 
+end
 describe '④登録情報変更～退会' do
   let(:admin) { create(:admin) }
   let(:customer) { create(:customer) }
@@ -386,6 +386,7 @@ describe '④登録情報変更～退会' do
       fill_in 'customer[first_name_kana]', with: gimei.first.katakana
       fill_in 'customer[postcode]', with: Faker::Number.number(digits: 7)
       fill_in 'customer[address]', with: Gimei.address.kanji
+      fill_in 'customer[phone_number]', with: Faker::PhoneNumber.phone_number
       fill_in 'customer[email]', with: Faker::Internet.email
       click_button '編集内容を保存'
       click_link 'ログアウト'
@@ -402,6 +403,7 @@ describe '④登録情報変更～退会' do
       expect(page).not_to have_content customer.first_name_kana
       expect(page).not_to have_content customer.postcode
       expect(page).not_to have_content customer.address
+      expect(page).not_to have_content customer.phone_number
       expect(page).not_to have_content customer.email
       # 変更後の会員情報が記載されていることを確認
       expect(page).to have_content customer.reload.last_name
@@ -410,6 +412,7 @@ describe '④登録情報変更～退会' do
       expect(page).to have_content customer.reload.first_name_kana
       expect(page).to have_content customer.reload.postcode
       expect(page).to have_content customer.reload.address
+      expect(page).to have_content customer.reload.phone_number
       expect(page).to have_content customer.reload.email
     end
   end

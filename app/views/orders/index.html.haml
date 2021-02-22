@@ -10,7 +10,7 @@
         %th ステータス
         %th 注文詳細
     %tbody
-      - current_customer.orders.each do |order|
+      - current_customer.orders.reverse_each do |order|
         %tr
           %td.align-middle
             = order.created_at.strftime("%Y/%m/%d")

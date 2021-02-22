@@ -6,7 +6,22 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(email: ENV['ADMIN_EMAIL'],
-             password: ENV['ADMIN_PASSWORD'])
+              password: ENV['ADMIN_PASSWORD'])
+
+25.times do |number|
+  gimei = Gimei::Name.new
+  Customer.create!(email: "test#{number}@test.com",
+                   password: 'password',
+                   password_confirmation: 'password',
+                   last_name: gimei.last.kanji,
+                   first_name: gimei.first.kanji,
+                   last_name_kana: gimei.last.katakana,
+                   first_name_kana: gimei.first.katakana,
+                   phone_number: Faker::PhoneNumber.phone_number,
+                   postcode: Faker::Number.number(digits: 7),
+                   address: Gimei.address.kanji,
+                   is_deleted: false)
+end
 
 Genre.create!(name: 'ケーキ')
 Genre.create!(name: 'プリン')
@@ -24,7 +39,7 @@ end
 
 8.times do |number|
   Product.create!(genre_id: 1,
-                  name: "ケーキ#{number}",
+                  name: "ケーキ#{number}(売り切れ)",
                   description: number,
                   price: 2500,
                   is_active: false,
@@ -42,7 +57,7 @@ end
 
 10.times do |number|
   Product.create!(genre_id: 2,
-                  name: "プリン#{number}",
+                  name: "プリン#{number}(売り切れ)",
                   description: number,
                   price: 500,
                   is_active: false,
@@ -78,23 +93,14 @@ end
 
 2.times do |number|
   Product.create!(genre_id: 4,
-                  name: "キャンディ#{number}",
+                  name: "キャンディ#{number}(売り切れ)",
                   description: number,
                   price: 340,
                   is_active: false,
                   conversion_name: "kinde")
 end
 
-Customer.create!(email: "test@gmail.com",
-                  password: "testpass",
-                  last_name: "test",
-                  first_name: "test", 
-                  last_name_kana: "test", 
-                  first_name_kana: "test",
-                  phone_number: 1234,
-                  postcode: "1234567",
-                  address: "test"
-                )
+
 
 100.times do |number|
   Order.create!(customer_id: 1,
