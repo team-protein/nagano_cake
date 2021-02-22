@@ -2,8 +2,9 @@ class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   # 電話番号のバリデーション
+  # ハイフンの有無問わない・0から始まる10桁の数字・0*0で始まる11桁の数字(*は5,7,8,9のみ可能)のみ許可
   VALID_PHONE_NUMBER_REGEX = /\A0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1})[-)]?\d{4}\z|\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
