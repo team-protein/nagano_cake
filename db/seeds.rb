@@ -18,7 +18,8 @@ Genre.create!(name: 'キャンディ')
                   name: "ケーキ#{number}",
                   description: number,
                   price: 4000,
-                  is_active: true)
+                  is_active: true,
+                  conversion_name: "keki")
 end
 
 8.times do |number|
@@ -26,7 +27,8 @@ end
                   name: "ケーキ#{number}",
                   description: number,
                   price: 2500,
-                  is_active: false)
+                  is_active: false,
+                  conversion_name: "keki")
 end
 
 5.times do |number|
@@ -34,7 +36,8 @@ end
                   name: "プリン#{number}",
                   description: number,
                   price: 400,
-                  is_active: true)
+                  is_active: true,
+                  conversion_name: "purin")
 end
 
 10.times do |number|
@@ -42,23 +45,26 @@ end
                   name: "プリン#{number}",
                   description: number,
                   price: 500,
-                  is_active: false)
+                  is_active: false,
+                  conversion_name: "purin")
 end
 
 13.times do |number|
   Product.create!(genre_id: 3,
-                  name: "焼き菓子#{number}",
+                  name: "焼き菓子",
                   description: number,
                   price: 320,
-                  is_active: true)
+                  is_active: true,
+                  conversion_name: "yakigashi")
 end
 
 7.times do |number|
   Product.create!(genre_id: 3,
-                  name: "焼き菓子#{number}",
+                  name: "焼き菓子",
                   description: number,
                   price: 590,
-                  is_active: false)
+                  is_active: false,
+                  conversion_name: "yakigashi")
 end
 
 3.times do |number|
@@ -66,7 +72,8 @@ end
                   name: "キャンディ#{number}",
                   description: number,
                   price: 350,
-                  is_active: true)
+                  is_active: true,
+                  conversion_name: "kinde")
 end
 
 2.times do |number|
@@ -74,7 +81,8 @@ end
                   name: "キャンディ#{number}",
                   description: number,
                   price: 340,
-                  is_active: false)
+                  is_active: false,
+                  conversion_name: "kinde")
 end
 
 Customer.create!(email: "test@gmail.com",
@@ -85,7 +93,7 @@ Customer.create!(email: "test@gmail.com",
                   first_name_kana: "test",
                   phone_number: 1234,
                   postcode: "1234567",
-                  address: "test",
+                  address: "test"
                 )
 
 100.times do |number|

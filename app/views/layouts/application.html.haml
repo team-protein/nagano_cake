@@ -38,4 +38,3 @@
         = yield
     %footer.border-top.mt-5
       = link_to '管理者ログイン', new_admin_session_path
-    %input{name: "products_name", type: "hidden", value: Product.where(is_active: true).pluck(:name).join(","), class: "products_name" }

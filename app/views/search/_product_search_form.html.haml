@@ -12,7 +12,7 @@
     .field
       = f.label :price, "価格", class: "font-weight-bold mt-3"
       %br
-      = f.select :price, [["0~1000", 1], ["1000~3000", 2], ["3000~5000", 3], ["5000~10000", 4] ], { selected: params[:price], include_blank: '選択してください' }, class: "btn btn-outline-secondary price"
+      = f.select :price, [["0~1000", 1], ["1000~3000", 2], ["3000~5000", 3], ["5000~10000", 4] ], { include_blank: '選択してください' }, class: "btn btn-outline-secondary price"
       %br
       = f.text_field :min_price, placeholder: "￥Min", value: params[:min_price], class: "mt-3 min_price"
       ～

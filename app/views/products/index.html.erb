@@ -7,7 +7,7 @@
         <% else %>
           <h2>商品一覧（全<%= @products_count %>件）</h2>
         <% end %>
-        <%= form_with url: products_path, method: :get, local: :true, class: "ml-auto mr-4" do |f| %>
+        <%= form_with url: products_path, method: :get, local: :true, class: "ml-auto" do |f| %>
           <div class="input-group-append">
             <%= f.search_field :words, value: params[:words], placeholder: '商品を検索', class: "product_text_search_form suggest" %>
             <%= f.hidden_field :sort, value: params[:sort] %>
@@ -20,9 +20,9 @@
           </div>
         <% end %>
         <%= render "search/sort_form" %>
-        <button id="down-button"class="btn btn-outline-primary dropdown-toggle mx-4 active-button">詳細検索</button>
+        <button id="down-button"class="btn btn-outline-primary dropdown-toggle mr-4 active-button">詳細検索</button>
         <span class="dropup">
-          <button id="up-button"class="btn btn-outline-primary dropdown-toggle mx-4">詳細検索</button>
+          <button id="up-button"class="btn btn-outline-primary dropdown-toggle mr-4">詳細検索</button>
         </span>
         <%= render "search/product_search_form" %>
       </div>
@@ -47,3 +47,5 @@
     </div>
   </div>
 </div>
+
+<input name="products_name" type="hidden" value=<%= @product_names.join(",") + @product_names_hira.join(",") %> class="products_name">

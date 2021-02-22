@@ -18,7 +18,7 @@ class Product < ApplicationRecord
   def self.genre_search_for(genre)
 	  where("genre_id LIKE?", "#{genre}")
   end
-  
+
   def self.sort_for(sort)
     case sort
     when "1"
@@ -33,18 +33,7 @@ class Product < ApplicationRecord
       includes(:ordered_products).sort_by {|product| product.ordered_products.size}.reverse
     end
   end
-  def self.price_search_for(price)
-    case price
-    when "1"
-      where(price: 0..1000)
-    when "2"
-      where(price: 1000..3000)
-    when "3"
-      where(price: 3000..5000)
-    when "4"
-      where(price: 5000..10000)
-    end
-  end
+
   def self.is_active_search_for(is_active)
     case is_active
     when "1"
@@ -59,5 +48,17 @@ class Product < ApplicationRecord
   # ブックマーク済みか確認する
   def bookmarked_by?(customer)
     bookmarks.where(customer_id: customer.id).exists?
+  end
+
+  def convert_name
+    map do |name|
+      if name.match(/[一-龠々]/)
+        name.to_kanhira
+      elsif name.is_kana?
+        name.to_hira
+      else
+        name
+      end
+    end
   end
 end
