@@ -14,12 +14,7 @@ $(function() {
       }
     });
 
-    var products = $(".products_name").val();
-    $('.suggest').autocomplete({
-      source: products.split(","),
-      delay: 100, // 入力してからサジェストが動くまでの時間(ms)
-      minLength: 2 // 2文字入力しないとサジェストが動かない
-    });
+
 
     $("#formreset").on("click", function(){
       $(".words").val("");

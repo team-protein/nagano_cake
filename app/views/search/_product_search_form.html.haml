@@ -1,10 +1,5 @@
 = form_with url: products_path, method: :get, local: :true, class: "product-search-form border p-3" do |f|
   .my-3.d-flex.flex-column
-    // 何故か検索できなくなった
-    // .field
-    //   = f.label :words, "検索ワードを追加", class: "font-weight-bold"
-    //   %br
-    //   = f.text_field :words, value: params[:words], placeholder: '商品を検索', class: "words"
     .field
       = f.label :genre_id, "ジャンル", class: "font-weight-bold"
       %br

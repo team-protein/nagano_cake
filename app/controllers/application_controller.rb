@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_product_names
 
   def after_sign_up_path_for(resource)
     customers_path
@@ -20,6 +21,19 @@ class ApplicationController < ActionController::Base
     else
       root_url
     end
+  end
+  
+  # 検索のサジェストで表示する商品名の設定
+  def set_product_names
+    product_names = Product.where(is_active: true).pluck(:name).push(",")
+    product_names_hira = product_names.map do |name|
+      if name.is_kana?
+        name.to_hira
+      else
+        name
+      end
+    end
+    @product_names_all = product_names.join(",") + product_names_hira.join(",")
   end
 
   protected
