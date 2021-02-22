@@ -56,6 +56,10 @@ a.text-dark:hover {
   }
 }
 
+.field_with_errors {
+  display: contents;
+}
+
 @media screen and (max-width:991px) {
   .search-form {
     width: 350px;
