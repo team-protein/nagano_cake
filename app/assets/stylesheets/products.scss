@@ -31,9 +31,10 @@
 .product-search-form {
   display: none;
   position: absolute;
-  left: 485px;
-  top: 45px;
+  left: 490px;
+  top: 37px;
   background-color: white;
+  z-index: 1;
 }
 
 .active {
@@ -41,7 +42,7 @@
 }
 
 #sort {
-  height: 46px;
+  height: 37px;
 }
 
 #price {
@@ -51,10 +52,22 @@
 
 #up-button {
   display: none;
-  height: 46px;
+  height: 37px;
 }
 
-#words {
+#down-button {
   height: 37px;
-  width: 100%;
+}
+
+
+#max_price {
+  height: 37px;
+}
+
+#min_price {
+  height: 37px;
+}
+
+.product_text_search_form {
+  height: 37px;
 }

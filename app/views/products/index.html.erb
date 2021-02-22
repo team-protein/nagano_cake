@@ -7,10 +7,22 @@
         <% else %>
           <h2>商品一覧（全<%= @products_count %>件）</h2>
         <% end %>
+        <%= form_with url: products_path, method: :get, local: :true, class: "ml-auto" do |f| %>
+          <div class="input-group-append">
+            <%= f.search_field :words, value: params[:words], placeholder: '商品を検索', class: "product_text_search_form suggest" %>
+            <%= f.hidden_field :sort, value: params[:sort] %>
+            <%= f.hidden_field :price, value: params[:price] %>
+            <%= f.hidden_field :min_price, value: params[:min_price] %>
+            <%= f.hidden_field :max_price, value: params[:max_price] %>
+            <%= f.hidden_field :is_active, value: params[:is_active] %>
+            <%= f.hidden_field :genre_id, value: params[:genre_id] %>
+            <%= f.submit "\uF002", class: 'search-btn btn btn-sm btn-outline-primary' %>
+          </div>
+        <% end %>
         <%= render "search/sort_form" %>
-        <button id="down-button"class="btn btn-outline-primary dropdown-toggle active-button">詳細検索</button>
+        <button id="down-button"class="btn btn-outline-primary dropdown-toggle mr-4 active-button">詳細検索</button>
         <span class="dropup">
-          <button id="up-button"class="btn btn-outline-primary dropdown-toggle">詳細検索</button>
+          <button id="up-button"class="btn btn-outline-primary dropdown-toggle mr-4">詳細検索</button>
         </span>
         <%= render "search/product_search_form" %>
       </div>
@@ -35,3 +47,5 @@
     </div>
   </div>
 </div>
+
+<input name="products_name" type="hidden" value=<%= @product_names.join(",") + @product_names_hira.join(",") %> class="products_name">

@@ -33,7 +33,8 @@ Genre.create!(name: 'キャンディ')
                   name: "ケーキ#{number}",
                   description: number,
                   price: 4000,
-                  is_active: true)
+                  is_active: true,
+                  conversion_name: "keki")
 end
 
 8.times do |number|
@@ -41,7 +42,8 @@ end
                   name: "ケーキ#{number}(売り切れ)",
                   description: number,
                   price: 2500,
-                  is_active: false)
+                  is_active: false,
+                  conversion_name: "keki")
 end
 
 5.times do |number|
@@ -49,7 +51,8 @@ end
                   name: "プリン#{number}",
                   description: number,
                   price: 400,
-                  is_active: true)
+                  is_active: true,
+                  conversion_name: "purin")
 end
 
 10.times do |number|
@@ -57,23 +60,26 @@ end
                   name: "プリン#{number}(売り切れ)",
                   description: number,
                   price: 500,
-                  is_active: false)
+                  is_active: false,
+                  conversion_name: "purin")
 end
 
 13.times do |number|
   Product.create!(genre_id: 3,
-                  name: "焼き菓子#{number}",
+                  name: "焼き菓子",
                   description: number,
                   price: 320,
-                  is_active: true)
+                  is_active: true,
+                  conversion_name: "yakigashi")
 end
 
 7.times do |number|
   Product.create!(genre_id: 3,
-                  name: "焼き菓子#{number}(売り切れ)",
+                  name: "焼き菓子",
                   description: number,
                   price: 590,
-                  is_active: false)
+                  is_active: false,
+                  conversion_name: "yakigashi")
 end
 
 3.times do |number|
@@ -81,7 +87,8 @@ end
                   name: "キャンディ#{number}",
                   description: number,
                   price: 350,
-                  is_active: true)
+                  is_active: true,
+                  conversion_name: "kinde")
 end
 
 2.times do |number|
@@ -89,5 +96,18 @@ end
                   name: "キャンディ#{number}(売り切れ)",
                   description: number,
                   price: 340,
-                  is_active: false)
+                  is_active: false,
+                  conversion_name: "kinde")
+end
+
+
+
+100.times do |number|
+  Order.create!(customer_id: 1,
+                postcode: "1234567",
+                address: "test",
+                dear: "test",
+                total_price: rand(1000..10000),
+                shipping_cost: 800,
+                created_at: "2021-#{rand(1..12)}-#{rand(1..28)} 04:39:22")
 end
