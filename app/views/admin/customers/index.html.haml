@@ -12,7 +12,7 @@
         %tbody
           - @customers.each do |customer|
             %tr
-              %td 
+              %td
                 = customer.id
               %td
                 = link_to admin_customer_path(customer) do
@@ -22,7 +22,7 @@
               %td
                 - if customer.is_deleted == true
                   %span.text-secondary 退会
-                - else 
+                - else
                   %span.text-success 有効
-  .mx-auto              
-  = paginate @customers
+  .d-flex.justify-content-center
+    = paginate @customers
