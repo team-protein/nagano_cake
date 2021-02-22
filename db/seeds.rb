@@ -76,3 +76,24 @@ end
                   price: 340,
                   is_active: false)
 end
+
+Customer.create!(email: "test@gmail.com",
+                  password: "testpass",
+                  last_name: "test",
+                  first_name: "test", 
+                  last_name_kana: "test", 
+                  first_name_kana: "test",
+                  phone_number: 1234,
+                  postcode: "1234567",
+                  address: "test",
+                )
+
+100.times do |number|
+  Order.create!(customer_id: 1,
+                postcode: "1234567",
+                address: "test",
+                dear: "test",
+                total_price: rand(1000..10000),
+                shipping_cost: 800,
+                created_month: "2021,#{rand(1..12)}")
+end

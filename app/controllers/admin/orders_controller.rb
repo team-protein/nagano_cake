@@ -5,8 +5,10 @@ class Admin::OrdersController < ApplicationController
     if params[:user_id].present?
       customer = Customer.find(params[:user_id])
       @orders = customer.orders.page(params[:page]).per(10)
+      @orders_month_sum = customer.orders.group(:created_month).sum(:total_price).to_a
     else
       @orders = Order.page(params[:page]).per(10)
+      @orders_month_sum = Order.group(:created_month).sum(:total_price).to_a
     end
   end
 

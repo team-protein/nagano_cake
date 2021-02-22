@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-      <h2>注文履歴一覧</h2>
+      <h2>売上推移</h2>
+      <%= line_chart @orders_month_sum, width: "900px", height: "400px" %>
+      <h2 class="my-5">注文履歴一覧</h2>
       <table class="table">
         <thead>
           <tr>

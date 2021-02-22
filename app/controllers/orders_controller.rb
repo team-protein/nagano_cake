@@ -54,6 +54,7 @@ class OrdersController < ApplicationController
     @order = current_customer.orders.new(session[:order])
     session[:order] = nil
     if @order.save
+      @order.update(created_month: @order.created_at.strftime("%Y,%m"))
       current_customer.cart_products.each do |cart_product|
         ordered_product = @order.ordered_products.new
         ordered_product.product_id = cart_product.product.id

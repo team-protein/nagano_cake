@@ -19,6 +19,8 @@
 //= require jquery
 //= require jquery.jpostal
 //= require jquery-ui/widgets/autocomplete
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 
