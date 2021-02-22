@@ -1,5 +1,5 @@
 $('#address_error_form').html("<%= j( render 'layouts/errors', obj: @address) %>");
-$('#address_form').html("<%= j( render 'addresses/address_form', address: @address) %>");
+$('#address_form').html("<%= j( render 'addresses/address_form', address: @address_new) %>");
 $('#addresses_index').html("<%= j( render 'addresses/index', addresses: @addresses) %>");
 $("#postcode-form").val("")
 $("#address-form").val("")
