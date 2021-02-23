@@ -1,0 +1,34 @@
+#cart-modal
+  #cart-product-lists
+    .close-modal
+    %button.btn 閉じるX
+    %h2 カート商品一覧
+    %table.table.table-bordered.mt-3
+      %thead
+        %tr
+          %th 商品名
+          %th 単価（税込）
+          %th 数量
+          %th 小計
+          %th
+      %tbody
+        - current_customer.cart_products.each do |cart_product|
+          %tr{:class => "cart_product_#{cart_product.id}"}
+            %td
+              = link_to product_path(cart_product.product) do
+                = attachment_image_tag cart_product.product, :image, fallback: 'no_image.png', size: '50x40'
+                = cart_product.product.name
+            %td
+              = tax_included_price(cart_product.product.price)
+            %td
+              = form_with model: cart_product do |f|
+                - if cart_product.quantity <= 10
+                  = f.select :quantity, ((1..10).to_a).map{|num| [num, num]}, { selected: cart_product.quantity }
+                - else
+                  = f.select :quantity, ((1..cart_product.quantity).to_a).map{|num| [num, num]}, { selected: cart_product.quantity }
+                = f.submit '変更', class: 'btn btn-sm btn-success ml-3'
+              %div{:class => "update_info_#{cart_product.id}"}
+            %td
+              = subtotal_price(cart_product.product.price, cart_product.quantity)
+            %td
+              = link_to '削除する', cart_product_path(cart_product), method: :delete, data: { confirm: '本当に削除しますか？' }, remote: true, class: 'btn btn-danger'
