@@ -6,7 +6,9 @@ class ProductsController < ApplicationController
 
       @products = Product.none #エラーが出ないように空の配列を作る
       words.each do |word|
-        if word.match(/[一-龠々]/) && word.match(/[0-9]/) == nil && word.match(/[０-９]/) == nil #漢字が含まれているとき
+        if word.match(/[一-龠々]/) #漢字が含まれているとき
+          word = word.gsub(/[0-9]/, "") #数字を削除する
+          word = word.gsub(/[０-９]/, "")
           conversion_word = word.to_kanhira
         elsif word.is_kana? #カタカナのとき
           conversion_word = word.to_hira
