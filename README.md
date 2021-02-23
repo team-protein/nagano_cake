@@ -1,5 +1,6 @@
-<img src="https://user-images.githubusercontent.com/75315945/108791686-0a7d7a00-75c3-11eb-866d-2714a73af64e.jpg" height="300px" width="800px"><br>ながのCAKE
+<img src="https://user-images.githubusercontent.com/75315945/108791686-0a7d7a00-75c3-11eb-866d-2714a73af64e.jpg" height="300px" width="800px"><br>
 
+# ながのCAKE
 
 長野県にある小さな洋菓子店、「ながのCAKE」の商品を通販するためのECサイト。<br>
 元々近隣樹民が主な顧客だったが、昨年始めたInstagramから人気となり、全国から注文が来るようになった。<br>
