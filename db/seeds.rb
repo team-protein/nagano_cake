@@ -103,7 +103,7 @@ end
 
 
 100.times do |number|
-  Order.create!(customer_id: 1,
+  Order.create!(customer_id: rand(1..25),
                 postcode: "1234567",
                 address: "test",
                 dear: "test",

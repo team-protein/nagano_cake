@@ -7,8 +7,11 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    if @product.name.match(/[一-龠々]/) && @product.name.match(/[0-9]/) == nil && @product.name.match(/[０-９]/) == nil #漢字が含まれているとき
-      @product.conversion_name = @product.name.to_kanhira
+    if @product.name.match(/[一-龠々]/) #漢字が含まれているとき
+      word = @product.name
+      word = word.gsub(/[0-9]/, "") #数字を削除する
+      word = word.gsub(/[０-９]/, "")
+      @product.conversion_name = word.to_kanhira
     elsif @product.name.is_kana? #カタカナのとき
       @product.conversion_name = @product.name.to_hira
     else
