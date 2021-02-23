@@ -28,10 +28,14 @@
   margin-bottom: 0;
 }
 
+.product-search-row {
+  position: relative;
+}
+
 .product-search-form {
   display: none;
   position: absolute;
-  left: 490px;
+  left: 410px;
   top: 37px;
   background-color: white;
   z-index: 1;

@@ -18,7 +18,7 @@ class Product < ApplicationRecord
   def self.genre_search_for(genre)
 	  where("genre_id LIKE?", "#{genre}")
   end
-
+  
   def self.sort_for(sort)
     case sort
     when "1"
@@ -49,16 +49,5 @@ class Product < ApplicationRecord
   def bookmarked_by?(customer)
     bookmarks.where(customer_id: customer.id).exists?
   end
-
-  def convert_name
-    map do |name|
-      if name.match(/[一-龠々]/)
-        name.to_kanhira
-      elsif name.is_kana?
-        name.to_hira
-      else
-        name
-      end
-    end
-  end
+  
 end

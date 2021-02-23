@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="product-index mx-auto">
-      <div class="d-flex mb-3">
+      <div class="d-flex mb-3 product-search-row">
         <% if params[:genre_id].present? %>
           <h2><%= @genre.name %>一覧（全<%= @products_count %>件）</h2>
         <% else %>
@@ -47,5 +47,3 @@
     </div>
   </div>
 </div>
-
-<input name="products_name" type="hidden" value=<%= @product_names.join(",") + @product_names_hira.join(",") %> class="products_name">

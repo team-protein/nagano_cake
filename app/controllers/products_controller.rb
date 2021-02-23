@@ -1,14 +1,15 @@
 class ProductsController < ApplicationController
-  
+
   def index
     if params[:words].present?
-      words = params[:words].split(/[[:blank:]]+/).select(&:present?)
-      @products = Product.none
+      words = params[:words].split(/[[:blank:]]+/).select(&:present?)# 検索ワードを空白がある場所で区切って新しい配列を作る
+
+      @products = Product.none #エラーが出ないように空の配列を作る
       words.each do |word|
-        if word.match(/[一-龠々]/)
-          conversion_word = word.to_kanhira.to_roman
-        elsif word.is_hira? || word.is_kana?
-          conversion_word = word.to_roman
+        if word.match(/[一-龠々]/) && word.match(/[0-9]/) == nil && word.match(/[０-９]/) == nil #漢字が含まれているとき
+          conversion_word = word.to_kanhira
+        elsif word.is_kana? #カタカナのとき
+          conversion_word = word.to_hira
         else
           conversion_word = word
         end
@@ -39,16 +40,6 @@ class ProductsController < ApplicationController
     end
     @products_count = @products.count
     @products = Kaminari.paginate_array(@products).page(params[:page]).per(8)
-    @product_names = Product.where(is_active: true).pluck(:name).push(",")
-    @product_names_hira = @product_names.map do |name|
-      if name.match(/[一-龠々]/)
-        name.to_s.to_kanhira
-      elsif name.is_kana?
-        name.to_hira
-      else
-        name
-      end
-    end
   end
 
   def show

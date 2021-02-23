@@ -1,0 +1,12 @@
+<script>
+  var products = <%== JSON.dump(@product_names_all) %>;
+  $('.suggest').autocomplete({
+    source: products.split(","),
+    delay: 100, // 入力してからサジェストが動くまでの時間(ms)
+    minLength: 2, // 2文字入力しないとサジェストが動かない
+    // select : function(event, ui) {
+    //   $("#words").val(ui.item.name);
+    //   document.words.submit();
+    // }
+  });
+</script>

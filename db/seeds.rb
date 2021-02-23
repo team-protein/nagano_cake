@@ -34,7 +34,7 @@ Genre.create!(name: 'キャンディ')
                   description: number,
                   price: 4000,
                   is_active: true,
-                  conversion_name: "keki")
+                  conversion_name: "けーき#{number}")
 end
 
 8.times do |number|
@@ -43,7 +43,7 @@ end
                   description: number,
                   price: 2500,
                   is_active: false,
-                  conversion_name: "keki")
+                  conversion_name: "けーき#{number}")
 end
 
 5.times do |number|
@@ -52,7 +52,7 @@ end
                   description: number,
                   price: 400,
                   is_active: true,
-                  conversion_name: "purin")
+                  conversion_name: "ぷりん#{number}")
 end
 
 10.times do |number|
@@ -61,7 +61,7 @@ end
                   description: number,
                   price: 500,
                   is_active: false,
-                  conversion_name: "purin")
+                  conversion_name: "ぷりん#{number}")
 end
 
 13.times do |number|
@@ -70,7 +70,7 @@ end
                   description: number,
                   price: 320,
                   is_active: true,
-                  conversion_name: "yakigashi")
+                  conversion_name: "やきがし")
 end
 
 7.times do |number|
@@ -79,7 +79,7 @@ end
                   description: number,
                   price: 590,
                   is_active: false,
-                  conversion_name: "yakigashi")
+                  conversion_name: "やきがし")
 end
 
 3.times do |number|
@@ -88,7 +88,7 @@ end
                   description: number,
                   price: 350,
                   is_active: true,
-                  conversion_name: "kinde")
+                  conversion_name: "きゃんでぃ#{number}")
 end
 
 2.times do |number|
@@ -97,7 +97,7 @@ end
                   description: number,
                   price: 340,
                   is_active: false,
-                  conversion_name: "kinde")
+                  conversion_name: "きゃんでぃ#{number}")
 end
 
 
