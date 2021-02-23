@@ -12,8 +12,17 @@
           <tr><th></th><td><%= f.submit "ログイン", class: "btn btn-primary px-5" %></td></tr>
         </table>
         <% end %>
-        <h4>会員登録がお済みでない方</h4>
-        <%= render "devise/shared/links" %>
+        <div class="d-flex justify-content-between">
+          <div class="customer-signup">
+            <h4>会員登録がお済みでない方</h4>
+            <%= render "devise/shared/links" %>
+          </div>
+
+          <div class="admin-signin">
+            <h4>管理者の方</h4>
+            <%= link_to 'こちら', new_admin_session_path %>からログインしてください
+          </div>
+        </div>
       </div>
     </div>
   </div>
