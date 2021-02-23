@@ -1,4 +1,5 @@
-# ![top_cake](https://user-images.githubusercontent.com/75315945/108791686-0a7d7a00-75c3-11eb-866d-2714a73af64e.jpg)<br>ながのCAKE
+<img src="https://user-images.githubusercontent.com/75315945/108791686-0a7d7a00-75c3-11eb-866d-2714a73af64e.jpg" height="300px" width="800px"><br>ながのCAKE
+
 
 長野県にある小さな洋菓子店、「ながのCAKE」の商品を通販するためのECサイト。<br>
 元々近隣樹民が主な顧客だったが、昨年始めたInstagramから人気となり、全国から注文が来るようになった。<br>
@@ -79,26 +80,26 @@ $ rails s <br>
 
 # Gem
 
-・devise
-・refile
-・jquery-rails
-・font-awesome-sass
-・bootstrap
-・dotenv-rails
-・kaminari
-・jp_prefecture
-・enum_help
-・rails-i18n
-・haml-rails
-・erb2haml
-・devise-i18n
-・devise-i18n-views
-・gimei
-・jquery-ui-rails
-・miyabi
-・faker
-・capybara
-・rspec-rails
+・devise<br>
+・refile<br>
+・jquery-rails<br>
+・font-awesome-sass<br>
+・bootstrap<br>
+・dotenv-rails<br>
+・kaminari<br>
+・jp_prefecture<br>
+・enum_help<br>
+・rails-i18n<br>
+・haml-rails<br>
+・erb2haml<br>
+・devise-i18n<br>
+・devise-i18n-views<br>
+・gimei<br>
+・jquery-ui-rails<br>
+・miyabi<br>
+・faker<br>
+・capybara<br>
+・rspec-rails<br>
 ・factory_bot_rails
 
 
