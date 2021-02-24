@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
         name
       end
     end
-    @product_names_all = product_names.join(",") + product_names_hira.join(",")
+    @product_names_all = product_names.push(product_names_hira).flatten!.uniq.join(",")
   end
 
   protected

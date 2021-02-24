@@ -1,12 +1,14 @@
 <script>
   var products = <%== JSON.dump(@product_names_all) %>;
+  var products = products.split(",").map(product => product = {value: product})
   $('.suggest').autocomplete({
-    source: products.split(","),
+    source: products,
     delay: 100, // 入力してからサジェストが動くまでの時間(ms)
     minLength: 2, // 2文字入力しないとサジェストが動かない
-    // select : function(event, ui) {
-    //   $("#words").val(ui.item.name);
-    //   document.words.submit();
-    // }
+    // サジェストが選択された際、そのワードで勝手に検索するようにする
+    select : function(event, ui) {
+      $("#words").val(ui.item.value);
+      document.words.submit();
+    }
   });
 </script>
